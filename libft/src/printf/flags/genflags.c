@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 int		skip_nums(char *format)
 {

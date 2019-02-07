@@ -12,6 +12,7 @@
 
 #include "printf.h"
 #include "typestruct.h"
+#include "enums.h"
 
 void	get_width(char *format, va_list *args, t_flag **flags)
 {

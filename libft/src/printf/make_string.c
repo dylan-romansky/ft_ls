@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 char	*str_to_arg(char *format)
 {

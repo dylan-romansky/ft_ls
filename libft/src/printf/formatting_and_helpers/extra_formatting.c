@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 char	*space_z(char *str, t_flag *flags)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 char	*handle_width(char *str, t_flag *flags, int t)
 {

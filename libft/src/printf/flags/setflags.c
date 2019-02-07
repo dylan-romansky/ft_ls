@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 int		set_flags(t_flag **flags, char *format, va_list *args)
 {

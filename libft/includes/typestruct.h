@@ -13,6 +13,7 @@
 #ifndef TYPESTRUCT_H
 # define TYPESTRUCT_H
 # include "printf.h"
+# include "enums.h"
 
 t_types g_types[] =
 {

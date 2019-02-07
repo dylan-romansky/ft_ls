@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "enums.h"
 
 char	*neg_width(char *s, t_flag *flags, int t)
 {

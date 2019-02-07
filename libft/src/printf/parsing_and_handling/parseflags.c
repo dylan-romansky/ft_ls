@@ -12,6 +12,7 @@
 
 #include "printf.h"
 #include "printstruct.h"
+#include "enums.h"
 
 int		parse_arg(t_flag *flags, va_list *args, char **buf)
 {

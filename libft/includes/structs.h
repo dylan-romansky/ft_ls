@@ -13,6 +13,7 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 # include "printf.h"
+# include "enums.h"
 
 typedef struct s_flag		t_flag;
 typedef struct s_stringmake	t_stringmake;
