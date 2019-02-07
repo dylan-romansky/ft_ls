@@ -30,17 +30,17 @@ char	*colourcode(char *format)
 	i = 0;
 	while (format[i] && format[i] != '}')
 		i++;
-	return (ft_strndup(format, i));
+	return (ft_strndup(++format, --i));
 }
 
-int		iscolour(char *format)
+int		colour(char *format)
 {
 	char	*code;
 	int		i;
 
 	i = 0;
 	code = colourcode(format);
-	while (i <= 6 && !ft_strstr(code, g_colour[i].colour))
+	while (i <= 6 && ft_strcmp(code, g_colour[i].colour))
 		i++;
 	return (i);
 }
@@ -49,10 +49,10 @@ int		get_colour(char *format, char **buf)
 {
 	int		i;
 
-	i = iscolour(format);
+	i = colour(format);
 	if (i > 6)
 	{
-		*buf = ft_strndup(format, 2);
+		*buf = ft_strndup(format, colour_skip(format) + 1);
 		return (ft_strlen(*buf));
 	}
 	*buf = ft_strdup(g_colour[i].code);
