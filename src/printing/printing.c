@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstructs.h                                         :+:      :+:    :+:   */
+/*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 20:19:21 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/07 20:36:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LSTRUCTS_H
-# define LSTRUCTS_H
-# include <dirent.h>
+#include "ls.h"
 
-typedef struct s_direct	t_direct;
-typedef struct s_file	t_file;
-
-struct	s_direct
+void		print_file(t_file *f)
 {
-	struct dirent	*direct;
-	t_file			*file;
-	t_direct		*next;
-};
+	while (f)
+	{
+		ft_printf("file: %s\n", f->file->d_name);
+		f = f->next;
+	}
+}
 
-struct	s_file
+void		print_list(t_direct *d)
 {
-	struct dirent	*file;
-	t_file			*next;
-};
-
-#endif
+	if (d->file)
+		print_file(d->file);
+	while (d)
+	{
+		ft_printf("directory: %s\n", d->direct->d_name);
+		d = d->next;
+	}
+}
