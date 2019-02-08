@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls.h                                               :+:      :+:    :+:   */
+/*   lstructs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 15:43:05 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/07 16:05:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LS_H
-# define LS_H
-# include "printf.h"
-# include "lstructs.h"
+#ifndef LSTRUCTS_H
+# define LSTRUCTS_H
+# include <dirent.h>
 
-/*
-** handle flags -l -R -a -r -t
-** bonus -u -f -g -d, colours
-*/
+typedef struct	s_direct;
+
+struct	s_direct
+{
+	DIR				*stream;
+	struct dirent	*direct;
+}	t_direct;
 
 #endif

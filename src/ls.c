@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls.h                                               :+:      :+:    :+:   */
+/*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 15:43:05 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/07 16:01:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LS_H
-# define LS_H
-# include "printf.h"
-# include "lstructs.h"
+#include "ls.h"
 
-/*
-** handle flags -l -R -a -r -t
-** bonus -u -f -g -d, colours
-*/
+int		main(int ac, char **av)
+{
+	t_direct	*d;
 
-#endif
+	d->stream = opendir(av[1]);
+	d->direct = readdir(stream);
+	printf("%s\n", d->direct->d_name);
+	return (0);
+}

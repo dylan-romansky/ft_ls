@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/05 15:32:00 by dromansk         ###   ########.fr        #
+#    Updated: 2019/02/07 16:11:04 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,16 @@ re: fclean all
 reclean: re
 	make clean
 
+compile:
+	gcc main.c $(I) $(L) -o ftest
+
 test: reclean
-	gcc main.c $(I) $(L)
+	make compile
 	./ftest
 
 run: clean
-	gcc main.c $(I) $(L)
+	make compile
 	./ftest
+
+rm: fclean
+	rm ftest main.c
