@@ -6,13 +6,13 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/07 16:05:14 by dromansk         ###   ########.fr        #
+#    Updated: 2019/02/07 16:45:50 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
-SRCS = ./src/*.c
+SRCS = ./src/*.c ./src/struct_handling/*.c
 
 I = -I ./includes -I ./libft/includes
 
@@ -23,8 +23,9 @@ L = -L ./libft -lft
 all: $(NAME)
 
 $(NAME):
-	make -C ./libft all
-	gcc -Wall -Werror -Wextra $(I) $(SRCS) $(L) -o $(NAME)
+	make -C ./libft reclean
+	gcc -Wall -Werror -Wextra -c $(I) $(SRCS)
+	gcc -Wall -Werror -Wextra -o $(NAME) $(O) $(I) $(L)
 
 clean:
 	make -C ./libft clean
