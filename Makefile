@@ -6,13 +6,14 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/07 20:23:47 by dromansk         ###   ########.fr        #
+#    Updated: 2019/02/07 21:57:20 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
-SRCS = ./src/*.c ./src/struct_handling/*.c ./src/printing/*.c ./src/checks/*.c
+SRCS = ./src/*.c ./src/struct_handling/*.c ./src/printing/*.c ./src/checks/*.c\
+	   ./src/sorting/*.c
 
 I = -I ./includes -I ./libft/includes
 
