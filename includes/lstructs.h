@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 20:19:21 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:43:47 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 # include <dirent.h>
 
 typedef struct s_direct	t_direct;
-typedef struct s_file	t_file;
+typedef struct s_ftypes	t_ftypes;
 
 struct	s_direct
 {
 	struct dirent	*direct;
-	t_file			*file;
+	unsigned char	printed;
+	t_direct		*sub;
 	t_direct		*next;
 };
 
-struct	s_file
+struct	s_ftypes
 {
-	struct dirent	*file;
-	t_file			*next;
+	char	type;
+	int		flag;
 };
 
 #endif

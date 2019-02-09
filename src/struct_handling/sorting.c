@@ -6,20 +6,15 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 22:34:38 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:54:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 
-/*
-**stupid fucking retard fucking infiniting for no fucking reason
-*/
-
 int		is_sorted(char *s1, char *s2)
 {
-	printf("%s vs %s\n", s1, s2);
-	while (*s1 && *s1 < *s2)
+	while (*s1 && *s1 == *s2)
 	{
 		s1++;
 		s2++;
@@ -29,56 +24,37 @@ int		is_sorted(char *s1, char *s2)
 	return (0);
 }
 
-void	sort_file(t_file **list)
+void	dir_swap(t_direct **current)
 {
-	t_file		*file;
-	t_file		*next;
+	t_direct	*tmp;
 
-	file = *list;
-	next = file->next;
-	while (file->next)
-	{
-		printf("file\n");
-		if (!is_sorted(file->file->d_name, next->file->d_name))
-		{
-			printf("we gucci\n");
-			file->next = next->next;
-			next->next = file;
-			next = file->next;
-			printf("we real gucci\n");
-			sort_file(list);
-		}
-		else
-		{
-			file = file->next;
-			next = next->next;
-		}
-	}
+	tmp = (*current)->next->next;
+	(*current)->next->next = (*current);
+	(*current)->next = tmp;
 }
 
 void	sort_dir(t_direct **list)
 {
 	t_direct	*dir;
-	t_direct	*next;
+	t_direct	*last;
 
 	dir = *list;
-	next = dir->next;
+	last = NULL;
 	while (dir->next)
 	{
-		printf("dir\n");
-		if (!is_sorted(dir->direct->d_name, next->direct->d_name))
+		if (!is_sorted(dir->direct->d_name, dir->next->direct->d_name))
 		{
-			printf("we gucci\n");
-			dir->next = next->next;
-			next->next = dir;
-			next = dir->next;
-			printf("we real gucci\n");
-			sort_dir(list);
+			if (dir != *list)
+				last->next = dir->next;
+			else
+				*list = dir->next;
+			dir_swap(&dir);
+			dir = *list;
 		}
 		else
 		{
-			dir = dir->next;
-			next = next->next;
+			last = dir;
+			dir = dir->next ? dir->next : dir;
 		}
 	}
 }

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 23:06:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 15:55:32 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/08 16:03:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fstruct.h"
+#include "ls.h"
 
 static char		**array_join(char **sentence, char *word)
 {
@@ -35,34 +36,54 @@ static char		**array_join(char **sentence, char *word)
 	return (new);
 }
 
-static int		wordlen(char const *str, char d)
+int		get_flag(char *s)
 {
 	int		i;
+	int		f;
 
 	i = 0;
-	while (str[i] && str[i] != d)
-		i++;
-	return (i);
+	f = 0;
+	if (*s++ == '-')
+	{
+		while (*s)
+		{
+			while (i <= 4 && g_ftypes[i].type != *s)
+				i++;
+			if (i <= 4)
+			{
+				f |= g_ftypes[i].flag;
+				s++;
+				i = 0;
+			}
+		}
+	}
+	return (f);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char	**get_path(int size, char **input)
 {
-	char	**n;
-	int		len;
+	int		i;
+	char	**paths;
 
-	if (s == NULL || !(n = (char **)malloc(sizeof(char *))))
-		return (NULL);
-	*n = NULL;
-	while (*s)
-	{
-		if (*s && *s != c)
-		{
-			len = wordlen(s, c);
-			n = array_join(n, ft_strndup(s, (size_t)len));
-			s += len;
-		}
-		else
-			s++;
-	}
-	return (n);
+	i = 0;
+	paths = (char **)malloc(sizeof(char *));
+	*paths = NULL;
+	while (++i < size)
+		if (!get_flag(input[i]))
+			paths = array_join(paths, input[i]);
+	if (!*paths)
+		paths = array_join(paths, "./");
+	return (paths);
+}
+
+int		get_flags(char **s, int size)
+{
+	int		i;
+	int		f;
+
+	i = 0;
+	f = 0;
+	while (i < size)
+		f |= get_flag(s[i++]);
+	return (f);
 }

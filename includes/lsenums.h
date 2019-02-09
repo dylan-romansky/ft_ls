@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing.c                                         :+:      :+:    :+:   */
+/*   lsenums.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 14:55:00 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/08 15:02:51 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/08 15:47:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ls.h"
+#ifndef LSENUMS_H
+# define LSENUMS_H
 
-void		print_list(t_direct *d)
+typedef enum e_lsflag	t_lsflag;
+
+enum	e_lsflag
 {
-	while (d)
-	{
-		ft_printf("%s\n", d->direct->d_name);
-		d = d->next;
-	}
-}
+	l = 1, R = 2, a = 4, r = 8, t = 16
+};
+
+#endif

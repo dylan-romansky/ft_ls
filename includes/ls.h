@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 22:09:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:52:04 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@
 ** bonus -u -f -g -d, colours
 */
 
+int			get_flags(char **s, int size);
+char		**get_path(int size, char **input);
+
 t_direct	*new_direct(struct dirent *direct);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 
-t_file		*new_file(struct dirent *file);
-int			add_file(t_direct **file, struct dirent *ent);
-void		del_file(t_file *file);
-
 void		print_list(t_direct *dir);
-void		sort_file(t_file **list);
 void		sort_dir(t_direct **list);
 
 int			is_type(struct stat stats, int type);

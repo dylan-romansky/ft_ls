@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing.c                                         :+:      :+:    :+:   */
+/*   fstruct.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 14:55:00 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/08 15:12:09 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/08 15:17:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ls.h"
+#ifndef FSTRUCT_H
+# define FSTRUCT_H
+# include "lsenums.h"
+# include "lstructs.h"
 
-void		print_list(t_direct *d)
+t_ftypes g_ftypes[] =
 {
-	while (d)
-	{
-		ft_printf("%s\n", d->direct->d_name);
-		d = d->next;
-	}
-}
+	{'l', l},
+	{'R', R},
+	{'a', a},
+	{'r', r},
+	{'t', t}
+};
+
+#endif

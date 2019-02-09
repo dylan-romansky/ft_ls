@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 20:42:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:13:22 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int			add_dir(t_direct **dir, struct dirent *ent)
 	if (!ent || stat(ent->d_name, &stats) == -1)
 		return (0);
 	n = *dir;
-	if (!is_type(stats, S_IFDIR))
-		add_file(dir, ent);
 	while (n->next)
 		n = n->next;
 	n->next = new_direct(ent);
@@ -35,7 +33,7 @@ t_direct	*new_direct(struct dirent *direct)
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->direct = direct;
-	new->file = NULL;
+	new->sub = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -45,8 +43,6 @@ void		del_dir(t_direct *dir)
 	t_direct	*del;
 
 	del = dir;
-	if (del->file)
-		del_file(del->file);
 	if (del->next)
 		del_dir(del->next);
 	free(del);
