@@ -12,7 +12,7 @@
 
 #include "ls.h"
 
-int		is_type(struct stat stats, int type)
+int		is_type(struct stat stats, unsigned int type)
 {
 	if ((stats.st_mode & S_IFMT) == type)
 		return (1);

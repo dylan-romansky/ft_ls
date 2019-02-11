@@ -43,9 +43,9 @@ t_direct	*new_direct(struct dirent *direct);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 
-void		print_list(t_direct *dir);
-void		sort_dir(t_direct **list);
+void		print_list(t_direct *dir, unsigned char flags);
+void		sort_dir(t_direct **list, unsigned char flags);
 
-int			is_type(struct stat stats, int type);
+int			is_type(struct stat stats, unsigned int type);
 
 #endif

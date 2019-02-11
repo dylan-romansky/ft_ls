@@ -24,8 +24,8 @@ int		main(int ac, char **av)
 	s = opendir(*path);
 	d = new_direct(readdir(s));
 	while (add_dir(&d, readdir(s)));
-	sort_dir(&d);
-	print_list(d);
+	sort_dir(&d, flags);
+	print_list(d, flags);
 	closedir(s);
 	del_dir(d);
 	return (0);
