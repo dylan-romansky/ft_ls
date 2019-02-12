@@ -34,14 +34,14 @@ void	print_info(struct dirent *file)
 	ft_printf(" ");
 }
 
-void	print_list(t_direct *d, unsigned char flags)
+void	print_list(t_direct *d)
 {
-	if (*(d->direct->d_name) == '.' && !(flags & a))
+	if (*(d->direct->d_name) == '.' && !(d->flags & a))
 		while (d->next && *(d->direct->d_name) == '.')
 			d = d->next;
 	while (d)
 	{
-		if (flags & l && flags & a)
+		if (d->flags & l && d->flags & a)
 			print_info(d->direct);
 		ft_printf("%s", d->direct->d_name);
 		ft_putchar('\n');

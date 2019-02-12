@@ -39,12 +39,12 @@
 int			get_flags(char **s, int size);
 char		**get_path(int size, char **input);
 
-t_direct	*new_direct(struct dirent *direct);
+t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 
-void		print_list(t_direct *dir, unsigned char flags);
-void		sort_dir(t_direct **list, unsigned char flags);
+void		print_list(t_direct *dir);
+void		sort_dir(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 

@@ -34,7 +34,7 @@ void	dir_swap(t_direct **current)
 	(*current)->next = tmp;
 }
 
-void	sort_dir(t_direct **list, unsigned char flags)
+void	sort_dir(t_direct **list)
 {
 	t_direct	*dir;
 	t_direct	*last;
@@ -43,7 +43,7 @@ void	sort_dir(t_direct **list, unsigned char flags)
 	last = NULL;
 	while (dir->next)
 	{
-		if ((r & flags) == is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+		if ((r & dir->flags) == is_sorted(dir->direct->d_name, dir->next->direct->d_name))
 		{
 			if (dir != *list)
 				last->next = dir->next;
