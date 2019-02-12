@@ -6,12 +6,21 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 21:05:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 21:48:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
+
+void	print_time(struct stat *info)
+{
+	char			*time;
+
+	time = ft_strsub(ctime(&(info->st_mtimespec.tv_sec)), 4, 12);
+	ft_printf(" %s ", time);
+	free(time);
+}
 
 void	print_perm(struct stat *info, int b)
 {

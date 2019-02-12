@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 20:16:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 21:26:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 21:44:11 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	print_time(struct stat *info)
 	long			time;
 	int				year;
 
+	ft_printf("\nhere's ya time nigga %s\n", ctime(&(info->st_mtimespec.tv_sec)));
 	time = (long)info->st_mtimespec.tv_sec;
 	year = 1970;
 	while (time > (year % 4 ? 31536000 : 31622400))
