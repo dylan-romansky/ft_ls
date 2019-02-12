@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 20:16:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 20:56:21 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 21:26:37 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	get_month(long time, int leap)
 	{
 		time -= leap && i == 1 ? g_months[i].time + 86400 : g_months[i].time;
 		i++;
-		if (i == 12)
-			i = 0;
 	}
 	ft_printf(" %s ", g_months[i].month);
 	get_day(time);
@@ -68,7 +66,7 @@ void	print_time(struct stat *info)
 
 	time = (long)info->st_mtimespec.tv_sec;
 	year = 1970;
-	while (time > 31536000)
+	while (time > (year % 4 ? 31536000 : 31622400))
 	{
 		time -= year % 4 ? 31536000 : 31622400;
 		year++;

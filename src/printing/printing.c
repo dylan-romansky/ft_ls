@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 20:17:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 21:05:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_info(t_direct *d)
 	print_perm(info, b);
 	ft_printf("  %d", info->st_nlink);
 	if (!(d->flags & g))
-		ft_printf(" %8s", d->user);
+		ft_printf(" %8s ", d->user);
 	ft_printf(" %8s %8ld", d->group, d->size);
 	print_time(info);
 }
