@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 16:03:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 19:04:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int		get_flag(char *s)
 	{
 		while (*s)
 		{
-			while (i <= 4 && g_ftypes[i].type != *s)
+			while (i <= 5 && g_ftypes[i].type != *s)
 				i++;
-			if (i <= 4)
+			if (i <= 5)
 			{
 				f |= g_ftypes[i].flag;
 				s++;

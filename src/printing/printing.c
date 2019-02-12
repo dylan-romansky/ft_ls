@@ -6,21 +6,15 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 18:44:04 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 20:17:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
 
-void	print_info(t_direct *d)
+void	print_perm(struct stat *info, int b)
 {
-	struct stat		*info;
-	int				b;
-
-	info = (struct stat *)malloc(sizeof(struct stat));
-	b = 256;
-	stat(d->direct->d_name, info);
 	is_type(*info, S_IFDIR) ? ft_printf("d") : ft_printf("-");
 	while (b)
 	{
@@ -31,7 +25,22 @@ void	print_info(t_direct *d)
 		b & info->st_mode ? ft_printf("x") : ft_printf("-");
 		b >>= 1;
 	}
-	ft_printf(" %d %8s %8s %9ld %s ", info->st_mode, d->user, d->group, d->size, "coming soon");
+}
+
+void	print_info(t_direct *d)
+{
+	struct stat		*info;
+	int				b;
+
+	info = (struct stat *)malloc(sizeof(struct stat));
+	b = 256;
+	stat(d->direct->d_name, info);
+	print_perm(info, b);
+	ft_printf("  %d", info->st_nlink);
+	if (!(d->flags & g))
+		ft_printf(" %8s", d->user);
+	ft_printf(" %8s %8ld", d->group, d->size);
+	print_time(info);
 }
 
 void	print_list(t_direct *d)
@@ -42,7 +51,7 @@ void	print_list(t_direct *d)
 			d = d->next;
 		else
 		{
-			if (d->flags & l && d->flags & a)
+			if ((d->flags & l && d->flags & a) || d->flags & g)
 				print_info(d);
 			ft_printf("%s", d->direct->d_name);
 			ft_putchar('\n');
