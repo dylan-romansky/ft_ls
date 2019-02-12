@@ -6,11 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 16:06:05 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:53:39 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
+#include "lsenums.h"
 
 int		ft_ls(char *path, unsigned char flags)
 {
@@ -19,7 +20,8 @@ int		ft_ls(char *path, unsigned char flags)
 
 	s = opendir(path);
 	d = new_direct(readdir(s), path, flags);
-	while (add_dir(&d, readdir(s)));
+	while (add_dir(&d, readdir(s)))
+		continue ;
 	sort_dir(&d);
 	print_list(d);
 	closedir(s);
