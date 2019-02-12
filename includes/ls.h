@@ -43,6 +43,9 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 
+char		*handle_gid(gid_t st_gid);
+char		*handle_uid(uid_t st_uid);
+
 void		print_list(t_direct *dir);
 void		sort_dir(t_direct **list);
 

@@ -13,14 +13,14 @@
 #include "ls.h"
 #include "lsenums.h"
 
-void	print_info(struct dirent *file)
+void	print_info(t_direct *d)
 {
-	struct stat	*info;
-	int			b;
+	struct stat		*info;
+	int				b;
 
 	info = (struct stat *)malloc(sizeof(struct stat));
 	b = 256;
-	stat(file->d_name, info);
+	stat(d->direct->d_name, info);
 	is_type(*info, S_IFDIR) ? ft_printf("d") : ft_printf("-");
 	while (b)
 	{
@@ -31,7 +31,7 @@ void	print_info(struct dirent *file)
 		b & info->st_mode ? ft_printf("x") : ft_printf("-");
 		b >>= 1;
 	}
-	ft_printf(" ");
+	ft_printf(" %d %8s %8s %9ld %s  ", info->st_mode, d->user, d->group, d->size, "coming soon");
 }
 
 void	print_list(t_direct *d)
@@ -42,7 +42,7 @@ void	print_list(t_direct *d)
 	while (d)
 	{
 		if (d->flags & l && d->flags & a)
-			print_info(d->direct);
+			print_info(d);
 		ft_printf("%s", d->direct->d_name);
 		ft_putchar('\n');
 		d = d->next;

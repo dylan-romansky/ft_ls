@@ -41,6 +41,9 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->direct = direct;
+	new->user = handle_uid(stats->st_uid);
+	new->group = handle_gid(stats->st_gid);
+	new->size = stats->st_size;
 	new->sub = NULL;
 	new->next = NULL;
 	if (is_type(*stats, S_IFDIR))

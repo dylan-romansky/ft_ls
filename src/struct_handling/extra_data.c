@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lstructs.h                                         :+:      :+:    :+:   */
+/*   extra_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 15:43:47 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/08 14:54:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LSTRUCTS_H
-# define LSTRUCTS_H
-# include <dirent.h>
+#include "ls.h"
 
-typedef struct s_direct	t_direct;
-typedef struct s_ftypes	t_ftypes;
-
-struct	s_direct
+char	*handle_gid(gid_t st_gid)
 {
-	struct dirent	*direct;
-	unsigned char	flags;
-	char			*path;
-	char			*user;
-	char			*group;
-	long			size;
-	t_direct		*sub;
-	t_direct		*next;
-};
+	struct group *id;
+	
+	id = getgrgid(st_gid);
+	return (ft_strdup(id->gr_name));
+}
 
-struct	s_ftypes
+char	*handle_uid(uid_t st_uid)
 {
-	char	type;
-	int		flag;
-};
+	struct passwd *id;
 
-#endif
+	id = getpwuid(st_uid);
+	return (ft_strdup(id->pw_name));
+}
