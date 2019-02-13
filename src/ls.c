@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 19:13:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 19:15:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	check_recursion(t_direct *dir)
 		if (dir->flags & isdir)
 		{
 			fpath = ft_strjoin(dir->path, dir->direct->d_name);
+			ft_printf("%s\n", fpath);
 			ft_ls(fix_input(fpath), dir->flags - isdir);
+			ft_putchar('\n');
 			free(fpath);
 		}
 		dir = dir->next;
@@ -67,8 +69,8 @@ int		ft_ls(char *path, unsigned char flags)
 	flags & t ? t_sort(&d) : sort_dir(&d);
 	print_list(d);
 	closedir(s);
-//	if (flags & R)
-//		check_recursion(d);
+	if (flags & R)
+		check_recursion(d);
 	del_dir(d);
 	return (1);
 }
