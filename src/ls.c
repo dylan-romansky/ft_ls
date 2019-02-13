@@ -48,7 +48,7 @@ void	check_recursion(t_direct *dir)
 	{
 		if (!(dir->flags & a) && *dir->direct->d_name == '.')
 			dir = dir->next;
-		else if (is_type(*(dir->stats), S_IFDIR))
+		else if (ft_strcmp(dir->direct->d_name, ".") && ft_strcmp(dir->direct->d_name, "..") && is_type(*(dir->stats), S_IFDIR))
 		{
 			printf("\n%s %d\n", dir->direct->d_name, is_type(*(dir->stats), S_IFDIR));
 			fpath = ft_strjoin(dir->path, dir->direct->d_name);

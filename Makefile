@@ -42,4 +42,4 @@ reclean: re
 	make clean
 
 test: reclean
-	./$(NAME)
+	./$(NAME) -Rla
