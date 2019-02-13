@@ -24,8 +24,6 @@ int			add_dir(t_direct **dir, struct dirent *ent)
 	while (n->next)
 		n = n->next;
 	tmp = n->flags;
-	if (tmp & isdir)
-		tmp -= isdir;
 	n->next = new_direct(ent, n->path, tmp);
 	return (1);
 }
@@ -36,23 +34,23 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	struct stat		*stats;
 	char			*fpath;
 
-	fpath = ft_strjoin(path, direct->d_name);
+	fpath = ft_strcmp(direct->d_name, ".") && ft_strcmp(direct->d_name, "..") ?
+		ft_strjoin(path, direct->d_name) : ft_strdup(direct->d_name);
 	stats = (struct stat *)malloc(sizeof(struct stat));
 	stat(fpath, stats);
 	free(fpath);
+//printf("\n%s %d\n", direct->d_name, is_type(*stats, S_IFDIR));
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->direct = direct;
 	new->user = handle_uid(stats->st_uid);
 	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
-	new->sub = NULL;
-	new->next = NULL;
-	if (is_type(*stats, S_IFDIR))
-		flags |= isdir;
+	new->stats = stats;
 	new->flags = flags;
 	new->path = path;
-	free(stats);
+	new->sub = NULL;
+	new->next = NULL;
 	return (new);
 }
 
@@ -61,6 +59,9 @@ void		del_dir(t_direct *dir)
 	t_direct		*del;
 
 	del = dir;
+	free(dir->stats);
+	free(dir->group);
+	free(dir->user);
 	if (del->next)
 		del_dir(del->next);
 	free(del);

@@ -20,6 +20,7 @@ typedef struct s_ftypes	t_ftypes;
 struct	s_direct
 {
 	struct dirent	*direct;
+	struct stat		*stats;
 	unsigned char	flags;
 	char			*path;
 	char			*user;

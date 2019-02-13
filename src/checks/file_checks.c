@@ -18,3 +18,13 @@ int		is_type(struct stat stats, unsigned int type)
 		return (1);
 	return (0);
 }
+
+void	del_path(char **path)
+{
+	int	i;
+
+	i = 0;
+	while (path[i])
+		free(path[i++]);
+	free(path);
+}

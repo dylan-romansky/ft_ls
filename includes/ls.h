@@ -30,6 +30,9 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+# ifndef st_mtimespec
+# define st_mtimespec st_mtim
+# endif
 
 /*
 ** handle flags -l -R -a -r -t
@@ -39,6 +42,7 @@
 int			ft_ls(char *path, unsigned char flags);
 int			get_flags(char **s, int size);
 char		**get_path(int size, char **input);
+void		del_path(char **path);
 
 t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);

@@ -38,22 +38,15 @@ void	print_perm(struct stat *info, int b)
 
 void	print_info(t_direct *d)
 {
-	struct stat		*info;
 	int				b;
-	char			*fpath;
 
-	info = (struct stat *)malloc(sizeof(struct stat));
 	b = 256;
-	fpath = ft_strjoin(d->path, d->direct->d_name);
-	stat(fpath, info);
-	print_perm(info, b);
-	ft_printf("  %d", info->st_nlink);
+	print_perm(d->stats, b);
+	ft_printf("  %d", d->stats->st_nlink);
 	if (!(d->flags & g))
 		ft_printf(" %8s ", d->user);
 	ft_printf(" %8s %8ld", d->group, d->size);
-	print_time(info);
-	free(info);
-	free(fpath);
+	print_time(d->stats);
 }
 
 void	print_list(t_direct *d)

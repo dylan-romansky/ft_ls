@@ -13,25 +13,31 @@
 #include "ls.h"
 #include "lsenums.h"
 
+/*
+** issue is after t_direct creation, some time before recursion check
+*/
+
 char	*fix_input(char *input)
 {
-	char		*s1;
-	char		*s2;
+	char		*s;
 
-	s1 = ft_strdup(input);
+	s = ft_strdup(input);
 	if (*input != '.' && *input != '/')
-	{
-		s2 = ft_strjoin("./", s1);
-		free(s1);
-		s1 = s2;
-	}
+		s = swap_n_free(ft_strjoin("./", s), &s);
 	if (input[ft_strlen(input) - 1] != '/')
+		s = swap_n_free(ft_strjoin(s, "/"), &s);
+	return (s);
+}
+
+int		is_end(t_direct *dir)
+{
+	while (dir)
 	{
-		s2 = ft_strjoin(s1, "/");
-		free (s1);
-		s1 = s2;
+		if (is_type(*(dir->stats), S_IFDIR))
+			return (0);
+		dir = dir->next;
 	}
-	return (s1);
+	return (1);
 }
 
 void	check_recursion(t_direct *dir)
@@ -41,19 +47,18 @@ void	check_recursion(t_direct *dir)
 	while (dir)
 	{
 		if (!(dir->flags & a) && *dir->direct->d_name == '.')
-		{
 			dir = dir->next;
-			continue ;
-		}
-		if (dir->flags & isdir)
+		else if (is_type(*(dir->stats), S_IFDIR))
 		{
+			printf("\n%s %d\n", dir->direct->d_name, is_type(*(dir->stats), S_IFDIR));
 			fpath = ft_strjoin(dir->path, dir->direct->d_name);
-			ft_printf("%s\n", fpath);
-			ft_ls(fix_input(fpath), dir->flags - isdir);
-			ft_putchar('\n');
+			ft_printf("\n%s\n", fpath);
+			ft_ls(fix_input(fpath), dir->flags);
 			free(fpath);
+			dir = dir->next;
 		}
-		dir = dir->next;
+		else
+			dir = dir->next;
 	}
 }
 
@@ -72,6 +77,7 @@ int		ft_ls(char *path, unsigned char flags)
 	if (flags & R)
 		check_recursion(d);
 	del_dir(d);
+	free(path);
 	return (1);
 }
 
@@ -96,5 +102,6 @@ int		main(int ac, char **av)
 		if (i < size)
 			ft_putchar('\n');
 	}
+	del_path(path);
 	return (0);
 }
