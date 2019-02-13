@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 21:48:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:22:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
 void		sort_dir(t_direct **list);
+void		t_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 

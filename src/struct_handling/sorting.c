@@ -6,12 +6,21 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 18:59:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:15:47 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
+
+void	dir_swap(t_direct **current)
+{
+	t_direct	*tmp;
+
+	tmp = (*current)->next->next;
+	(*current)->next->next = (*current);
+	(*current)->next = tmp;
+}
 
 int		is_sorted(char *s1, char *s2)
 {
@@ -25,14 +34,54 @@ int		is_sorted(char *s1, char *s2)
 	return (0);
 }
 
-void	dir_swap(t_direct **current)
+int		t_is_sorted(char *d1, char *d2)
 {
-	t_direct	*tmp;
+	struct stat	*s1;
+	struct stat	*s2;
 
-	tmp = (*current)->next->next;
-	(*current)->next->next = (*current);
-	(*current)->next = tmp;
+	s1 = (struct stat *)malloc(sizeof(struct stat));
+	s2 = (struct stat *)malloc(sizeof(struct stat));
+	stat(d1, s1);
+	stat(d2, s2);
+	if (s1->st_mtimespec.tv_sec < s2->st_mtimespec.tv_sec)
+		return (t);
+	else if (s1->st_mtimespec.tv_sec == s2->st_mtimespec.tv_sec)
+	{
+		if (s1->st_mtimespec.tv_nsec < s2->st_mtimespec.tv_nsec)
+			return (t);
+		else if (s1->st_mtimespec.tv_nsec == s2->st_mtimespec.tv_nsec)
+			return(is_sorted(d1, d2) ? t : 0);
+	}
+	return (0);
 }
+
+void	t_sort(t_direct **list)
+{
+	t_direct	*dir;
+	t_direct	*last;
+
+	dir = *list;
+	last = NULL;
+	while (dir->next)
+	{
+		if ((t & dir->flags)
+				== t_is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+		{
+			if (dir != *list)
+				last->next = dir->next;
+			else
+				*list = dir->next;
+			dir_swap(&dir);
+			dir = *list;
+		}
+		else
+		{
+			last = dir;
+			dir = dir->next ? dir->next : dir;
+		}
+	}
+}
+
 
 void	sort_dir(t_direct **list)
 {
@@ -43,7 +92,8 @@ void	sort_dir(t_direct **list)
 	last = NULL;
 	while (dir->next)
 	{
-		if ((r & dir->flags) == is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+		if ((r & dir->flags) ==
+				is_sorted(dir->direct->d_name, dir->next->direct->d_name))
 		{
 			if (dir != *list)
 				last->next = dir->next;

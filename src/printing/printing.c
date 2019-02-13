@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/11 21:48:59 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:58:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	print_info(t_direct *d)
 		ft_printf(" %8s ", d->user);
 	ft_printf(" %8s %8ld", d->group, d->size);
 	print_time(info);
+	free(info);
 }
 
 void	print_list(t_direct *d)
