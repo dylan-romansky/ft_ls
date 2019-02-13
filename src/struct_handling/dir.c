@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 14:13:22 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:36:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 int			add_dir(t_direct **dir, struct dirent *ent)
 {
 	t_direct		*n;
-	struct stat		stats;
 	unsigned char	tmp;
 
-	if (!ent || stat(ent->d_name, &stats) == -1)
+	if (!ent)
 		return (0);
 	n = *dir;
 	while (n->next)
@@ -35,9 +34,12 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 {
 	t_direct		*new;
 	struct stat		*stats;
+	char			*fpath;
 
+	fpath = ft_strjoin(path, direct->d_name);
 	stats = (struct stat *)malloc(sizeof(struct stat));
-	stat(direct->d_name, stats);
+	stat(fpath, stats);
+	free(fpath);
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->direct = direct;
@@ -50,6 +52,7 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 		flags |= isdir;
 	new->flags = flags;
 	new->path = path;
+	free(stats);
 	return (new);
 }
 
