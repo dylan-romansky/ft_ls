@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 15:22:36 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 19:12:11 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 ** bonus -u -f -g -d, colours
 */
 
+int			ft_ls(char *path, unsigned char flags);
 int			get_flags(char **s, int size);
 char		**get_path(int size, char **input);
 

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 19:01:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 19:13:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*fix_input(char *input)
 {
-	char *s1;
-	char *s2;
+	char		*s1;
+	char		*s2;
 
 	s1 = ft_strdup(input);
 	if (*input != '.' && *input != '/')
@@ -32,6 +32,27 @@ char	*fix_input(char *input)
 		s1 = s2;
 	}
 	return (s1);
+}
+
+void	check_recursion(t_direct *dir)
+{
+	char		*fpath;
+
+	while (dir)
+	{
+		if (!(dir->flags & a) && *dir->direct->d_name == '.')
+		{
+			dir = dir->next;
+			continue ;
+		}
+		if (dir->flags & isdir)
+		{
+			fpath = ft_strjoin(dir->path, dir->direct->d_name);
+			ft_ls(fix_input(fpath), dir->flags - isdir);
+			free(fpath);
+		}
+		dir = dir->next;
+	}
 }
 
 int		ft_ls(char *path, unsigned char flags)
