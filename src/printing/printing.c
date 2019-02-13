@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 14:58:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:46:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	print_info(t_direct *d)
 {
 	struct stat		*info;
 	int				b;
+	char			*fpath;
 
 	info = (struct stat *)malloc(sizeof(struct stat));
 	b = 256;
-	stat(d->direct->d_name, info);
+	fpath = ft_strjoin(d->path, d->direct->d_name);
+	stat(fpath, info);
 	print_perm(info, b);
 	ft_printf("  %d", info->st_nlink);
 	if (!(d->flags & g))
@@ -51,6 +53,7 @@ void	print_info(t_direct *d)
 	ft_printf(" %8s %8ld", d->group, d->size);
 	print_time(info);
 	free(info);
+	free(fpath);
 }
 
 void	print_list(t_direct *d)
