@@ -6,12 +6,42 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 16:39:01 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:16:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
+
+int			num_len(long long n)
+{
+	int				i;
+
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+void		fix_size_pad(t_direct **dir)
+{
+	t_direct		*d;
+	int				size;
+
+	d = *dir;
+	size = d->size_pad;
+	while (d->next)
+	{
+		if (d->next->size_pad > size)
+		{
+			size = d->next->size_pad;
+			d->size_pad = size;
+			fix_size_pad(dir);
+		}
+		d->size_pad = size;
+		d = d->next;
+	}
+}
 
 int			add_dir(t_direct **dir, struct dirent *ent)
 {
@@ -37,7 +67,7 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	fpath = ft_strcmp(direct->d_name, ".") && ft_strcmp(direct->d_name, "..") ?
 		ft_strjoin(path, direct->d_name) : ft_strdup(direct->d_name);
 	stats = (struct stat *)malloc(sizeof(struct stat));
-	stat(fpath, stats);
+	lstat(fpath, stats);
 	free(fpath);
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
@@ -45,6 +75,7 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	new->user = handle_uid(stats->st_uid);
 	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
+	new->size_pad = num_len(new->size);
 	new->stats = stats;
 	new->flags = flags;
 	new->path = path;

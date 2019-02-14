@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 15:39:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:22:21 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		t_is_sorted(char *d1, char *d2)
 		if (s1->st_mtimespec.tv_nsec < s2->st_mtimespec.tv_nsec)
 			return (t);
 		else if (s1->st_mtimespec.tv_nsec == s2->st_mtimespec.tv_nsec)
-			return(is_sorted(d1, d2) ? t : 0);
+			return (is_sorted(d1, d2) ? t : 0);
 	}
 	return (0);
 }
@@ -56,7 +56,7 @@ void	f_sort(t_direct **list)
 	while (dir->next)
 	{
 		if (!(ft_strcmp(dir->next->direct->d_name, ".") &&
-			   ft_strcmp(dir->next->direct->d_name, "..")) &&
+					ft_strcmp(dir->next->direct->d_name, "..")) &&
 				!is_sorted(dir->direct->d_name, dir->next->direct->d_name))
 		{
 			if (dir != *list)
@@ -100,7 +100,6 @@ void	t_sort(t_direct **list)
 		}
 	}
 }
-
 
 void	sort_dir(t_direct **list)
 {

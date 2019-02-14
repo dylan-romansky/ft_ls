@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:47:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:50:21 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-//# ifndef st_mtimespec
-//# define st_mtimespec st_mtim
-//# endif
+
+# define BUFF_SIZE 12
+
+/*
+**# ifndef st_mtimespec
+**# define st_mtimespec st_mtim
+**# endif
+*/
 
 /*
 ** bonus -u -d, colours
@@ -48,6 +53,7 @@ void		del_path(char **path);
 t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
+void		fix_size_pad(t_direct **dir);
 int			is_end(t_direct *dir);
 
 char		*handle_gid(gid_t st_gid);
@@ -63,5 +69,6 @@ void		t_sort(t_direct **list);
 int			is_type(struct stat stats, unsigned int type);
 
 int			test_input(char *input);
+int			flags_error(char e);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/05 19:41:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:28:34 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void		flag_del(t_flag **flags);
 /*
 **number conversion
 */
-char		*ft_uimaxtoa_base(intmax_t n, int base);
-char		*ft_imaxtoa_base(intmax_t n, int base);
+char		*ft_uimaxtoa_base(long long n, int base);
+char		*ft_imaxtoa_base(long long n, int base);
 /*
 **functions used in parsing
 */

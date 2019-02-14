@@ -6,13 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 13:54:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/07 16:07:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:27:26 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 # include "printf.h"
+# define INTMAX_T T_INTMAX
 
 typedef struct s_flag		t_flag;
 typedef struct s_stringmake	t_stringmake;
@@ -42,7 +43,7 @@ struct	s_stringmake
 struct	s_numcon
 {
 	int		base;
-	char	*(*data)(intmax_t, int);
+	char	*(*data)(long long, int);
 };
 
 struct	s_arglen

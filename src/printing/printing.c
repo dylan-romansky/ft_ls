@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:48:10 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:42:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	print_time(struct stat *info)
 
 void	print_perm(struct stat *info, int b)
 {
-	is_type(*info, S_IFDIR) ? ft_printf("d") : ft_printf("-");
+	if (is_type(*info, S_IFDIR))
+		ft_printf("d");
+	else if (is_type(*info, S_IFLNK))
+		ft_printf("l");
+	else
+		ft_printf("-");
 	while (b)
 	{
 		b & info->st_mode ? ft_printf("r") : ft_printf("-");
@@ -45,13 +50,26 @@ void	print_info(t_direct *d)
 	ft_printf("  %d", d->stats->st_nlink);
 	if (!(d->flags & g))
 		ft_printf(" %8s ", d->user);
-	ft_printf(" %8s %8ld", d->group, d->size);
+	ft_printf(" %8s  %*ld", d->group, d->size_pad, d->size);
 	print_time(d->stats);
+}
+
+void	print_link(t_direct *d)
+{
+	char			link[BUFF_SIZE + 1];
+	int				ret;
+	char			*path;
+
+	path = ft_strjoin(d->path, d->direct->d_name);
+	ret = readlink(path, link, BUFF_SIZE);
+	link[ret] = '\0';
+	ft_printf("%s -> %s\n", d->direct->d_name, link);
+	free(path);
 }
 
 void	print_list(t_direct *d)
 {
-	if (d->flags & l)
+	if (d->flags & l || d->flags & g)
 		get_blocks(d);
 	while (d)
 	{
@@ -61,8 +79,11 @@ void	print_list(t_direct *d)
 		{
 			if (d->flags & l || d->flags & g)
 				print_info(d);
-			ft_printf("%s", d->direct->d_name);
-			ft_putchar('\n');
+			if (is_type(*(d->stats), S_IFLNK) && (d->flags & g
+						|| d->flags & l))
+				print_link(d);
+			else
+				ft_printf("%s\n", d->direct->d_name);
 			d = d->next;
 		}
 	}

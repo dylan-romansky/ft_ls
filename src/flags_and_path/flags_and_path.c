@@ -6,14 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:41:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:45:05 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fstruct.h"
 #include "ls.h"
 
-static char		**array_join(char **sentence, char *word)
+static char	**array_join(char **sentence, char *word)
 {
 	char	**old;
 	char	**new;
@@ -36,7 +36,16 @@ static char		**array_join(char **sentence, char *word)
 	return (new);
 }
 
-int		get_flag(char *s)
+int			get_one(int f)
+{
+	if (f & l)
+		f -= l;
+	if (f & g)
+		f -= g;
+	return (f);
+}
+
+int			get_flag(char *s)
 {
 	int		i;
 	int		f;
@@ -47,16 +56,14 @@ int		get_flag(char *s)
 	{
 		while (*s)
 		{
-			while (i <= 6 && g_ftypes[i].type != *s)
+			if (*s == '1')
+				f = get_one(f);
+			while (i <= 7 && g_ftypes[i].type != *s)
 				i++;
-			if (i <= 6)
+			if (i <= 7)
 				f |= g_ftypes[i].flag;
 			else
-			{
-				ft_dprintf(2, "ft_ls: illegal option --%c\n", *s);
-				ft_dprintf(2, "usage: ft_ls [-Rafglrt] [file ...]\n");
-				return (255);
-			}
+				return (flags_error(*s));
 			s++;
 			i = 0;
 		}
@@ -64,7 +71,7 @@ int		get_flag(char *s)
 	return (f);
 }
 
-char	**get_path(int size, char **input)
+char		**get_path(int size, char **input)
 {
 	int		i;
 	char	**paths;
@@ -88,7 +95,7 @@ char	**get_path(int size, char **input)
 	return (paths);
 }
 
-int		get_flags(char **s, int size)
+int			get_flags(char **s, int size)
 {
 	int		i;
 	int		f;

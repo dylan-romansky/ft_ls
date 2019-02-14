@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/08 14:54:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 21:21:15 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*handle_gid(gid_t st_gid)
 {
 	struct group *id;
-	
+
 	id = getgrgid(st_gid);
 	return (ft_strdup(id->gr_name));
 }
