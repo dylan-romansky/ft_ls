@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 17:20:48 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:01:50 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ char	**get_path(int size, char **input)
 	error = 0;
 	while (++i < size)
 	{
+		error = 0;
 		if (!get_flag(input[i]))
 			error = test_input(input[i]);
 		if (!error)
 			paths = array_join(paths, ft_strdup(input[i]));
-		error = 0;
 	}
 	if (!*paths && !error)
 		paths = array_join(paths, ft_strdup("./"));

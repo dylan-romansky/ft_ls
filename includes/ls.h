@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 16:45:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:00:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-# ifndef st_mtimespec
-# define st_mtimespec st_mtim
-# endif
+//# ifndef st_mtimespec
+//# define st_mtimespec st_mtim
+//# endif
 
 /*
 ** bonus -u -d, colours
