@@ -31,7 +31,7 @@
 # include <sys/ioctl.h>
 # include <fcntl.h>
 # ifdef __linux__
-# include "arch.h"
+# include "linux.h"
 # endif
 # define BUFF_SIZE 12
 
