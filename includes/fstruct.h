@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:12:09 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:49:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 22:23:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ t_ftypes g_ftypes[] =
 /*
 **	{'u', u},
 **	{'d', d}
+*/
+
+/*
+** normal shit is white
+** directories are blue
+** executable is red
+** symlink is magenta
+** socket is green
+** pipe (fifo) is brown
 */
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:16:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 22:37:58 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	new->size = stats->st_size;
 	new->size_pad = num_len(new->size);
 	new->stats = stats;
+//	printf("%s mode %d\nfifo %d\nchr %d\ndir %d\nblk %d\nreg %d\nlink %d\nsock %d\nwht %d\n", direct->d_name, S_IFMT & stats->st_mode, S_IFIFO, S_IFCHR, S_IFDIR, S_IFBLK, S_IFREG, S_IFLNK, S_IFSOCK, S_IFWHT);
 	new->flags = flags;
 	new->path = path;
 	new->sub = NULL;
