@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 17:07:46 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:15:34 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char	**get_path(int size, char **input)
 		if (!error)
 			paths = array_join(paths, ft_strdup(input[i]));
 	}
+	printf("%s %d\n", *paths, error);
 	if (!*paths && !error)
 		paths = array_join(paths, ft_strdup("./"));
 	return (paths);
