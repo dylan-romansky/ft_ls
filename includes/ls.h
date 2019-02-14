@@ -30,11 +30,9 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-/*
-**# ifndef st_mtimespec
-**# define st_mtimespec st_mtim
-**# endif
-*/
+# ifndef st_mtimespec
+# define st_mtimespec st_mtim
+# endif
 
 /*
 ** bonus -u -d, colours

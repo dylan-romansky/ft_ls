@@ -53,8 +53,8 @@ int		get_flag(char *s)
 				f |= g_ftypes[i].flag;
 			else
 			{
-				ft_printf("ft_ls: illegal option --%c\n", *s);
-				ft_printf("usage: ft_ls [-Rafglrt] [file ...]\n");
+				ft_dprintf(2, "ft_ls: illegal option --%c\n", *s);
+				ft_dprintf(2, "usage: ft_ls [-Rafglrt] [file ...]\n");
 				return (255);
 			}
 			s++;

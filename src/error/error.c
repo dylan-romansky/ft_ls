@@ -14,7 +14,7 @@
 
 void	errorprint(char *path, int errnum)
 {
-	ft_printf("ft_ls: %s: %s\n", path, strerror(errnum));
+	ft_dprintf(2, "ft_ls: %s: %s\n", path, strerror(errnum));
 }
 
 int		test_input(char *input)
