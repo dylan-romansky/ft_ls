@@ -48,8 +48,8 @@ void		flag_del(t_flag **flags);
 /*
 **number conversion
 */
-char		*ft_uimaxtoa_base(long long n, int base);
-char		*ft_imaxtoa_base(long long n, int base);
+char		*ft_uimaxtoa_base(intmax_t n, int base);
+char		*ft_imaxtoa_base(intmax_t n, int base);
 /*
 **functions used in parsing
 */

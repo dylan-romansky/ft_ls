@@ -43,7 +43,7 @@ struct	s_stringmake
 struct	s_numcon
 {
 	int		base;
-	char	*(*data)(long long, int);
+	char	*(*data)(intmax_t, int);
 };
 
 struct	s_arglen

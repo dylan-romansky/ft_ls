@@ -22,7 +22,7 @@ long	numlen(intmax_t n, int base)
 	return (i);
 }
 
-char	*ft_imaxtoa_base(long long n, int base)
+char	*ft_imaxtoa_base(intmax_t n, int base)
 {
 	char		*st;
 	intmax_t	v;
@@ -48,7 +48,7 @@ char	*ft_imaxtoa_base(long long n, int base)
 	return (NULL);
 }
 
-int		unumlen(unsigned long long value, unsigned int base)
+int		unumlen(uintmax_t value, unsigned int base)
 {
 	int			i;
 
@@ -58,7 +58,7 @@ int		unumlen(unsigned long long value, unsigned int base)
 	return (i);
 }
 
-char	*ft_uimaxtoa_base(long long n, int base)
+char	*ft_uimaxtoa_base(intmax_t n, int base)
 {
 	char		*s;
 	uintmax_t	v;
