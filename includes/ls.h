@@ -30,14 +30,10 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-
+# ifdef __linux__
+# include "arch.h"
+# endif
 # define BUFF_SIZE 12
-
-/*
-**# ifndef st_mtimespec
-**# define st_mtimespec st_mtim
-**# endif
-*/
 
 /*
 ** bonus -u -d, colours
