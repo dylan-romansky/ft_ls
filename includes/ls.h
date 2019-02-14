@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:00:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:47:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
+void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);
 void		dir_swap(t_direct **current);

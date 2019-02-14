@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:01:50 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:41:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,18 @@ char	**get_path(int size, char **input)
 	char	**paths;
 	int		error;
 
-	i = 0;
+	i = 1;
 	paths = (char **)malloc(sizeof(char *));
 	*paths = NULL;
 	error = 0;
-	while (++i < size)
+	while (input[i] && *input[i] == '-')
+		i++;
+	while (i < size)
 	{
-		error = 0;
-		if (!get_flag(input[i]))
-			error = test_input(input[i]);
+		error = test_input(input[i]);
 		if (!error)
 			paths = array_join(paths, ft_strdup(input[i]));
+		i++;
 	}
 	if (!*paths && !error)
 		paths = array_join(paths, ft_strdup("./"));
@@ -94,7 +95,11 @@ int		get_flags(char **s, int size)
 
 	i = 0;
 	f = 0;
-	while (i < size)
-		f |= get_flag(s[i++]);
+	while (++i < size)
+	{
+		if (*s[i] != '-')
+			break ;
+		f |= get_flag(s[i]);
+	}
 	return (f);
 }

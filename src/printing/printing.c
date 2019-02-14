@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 15:42:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:48:10 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	print_info(t_direct *d)
 
 void	print_list(t_direct *d)
 {
+	if (d->flags & l)
+		get_blocks(d);
 	while (d)
 	{
 		if (*(d->direct->d_name) == '.' && !(d->flags & a))

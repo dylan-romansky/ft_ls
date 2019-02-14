@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 17:14:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:40:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "lsenums.h"
 
 /*
-** issue is after t_direct creation, some time before recursion check
+** restructure so it properly parses [-flags] [path]
 */
 
 char	*fix_input(char *input)
@@ -92,7 +92,7 @@ int		main(int ac, char **av)
 		size++;
 	while (path[i])
 	{
-		if ((flags & R || size > 1) && ft_strcmp(path[i], "./"))
+		if (size > 1 && ft_strcmp(path[i], "./"))
 			ft_printf("%s:\n", path[i]);
 		ft_ls(fix_input(path[i]), flags);
 		if (++i < size)
