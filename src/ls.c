@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 17:06:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:10:58 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ int		main(int ac, char **av)
 	int				size;
 	int				i;
 
+	errno = 0;
 	flags = get_flags(av, ac);
 	if (flags == 255)
-		return (0);
+		return (255);
 	path = get_path(ac, av);
 	size = 0;
 	i = 0;
@@ -98,5 +99,5 @@ int		main(int ac, char **av)
 			ft_putchar('\n');
 	}
 	del_path(path);
-	return (0);
+	return (errno);
 }
