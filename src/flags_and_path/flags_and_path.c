@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 18:43:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:07:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,18 @@ int		get_flag(char *s)
 	{
 		while (*s)
 		{
-			while (i <= 5 && g_ftypes[i].type != *s)
+			while (i <= 6 && g_ftypes[i].type != *s)
 				i++;
-			if (i <= 5)
-			{
+			if (i <= 6)
 				f |= g_ftypes[i].flag;
-				s++;
-				i = 0;
+			else
+			{
+				ft_printf("ft_ls: illegal option --%c\n", *s);
+				ft_printf("usage: ft_ls [-Rafglrt] [file ...]\n");
+				return (255);
 			}
+			s++;
+			i = 0;
 		}
 	}
 	return (f);
@@ -64,14 +68,20 @@ char	**get_path(int size, char **input)
 {
 	int		i;
 	char	**paths;
+	int		error;
 
 	i = 0;
 	paths = (char **)malloc(sizeof(char *));
 	*paths = NULL;
 	while (++i < size)
+	{
+		error = 0;
 		if (!get_flag(input[i]))
+			error = test_input(input[i]);
+		if (!error)
 			paths = array_join(paths, ft_strdup(input[i]));
-	if (!*paths)
+	}
+	if (!*paths && !error)
 		paths = array_join(paths, ft_strdup("./"));
 	return (paths);
 }

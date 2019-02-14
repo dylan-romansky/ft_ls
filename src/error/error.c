@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lsenums.h                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/08 15:02:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 14:23:50 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/13 16:59:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LSENUMS_H
-# define LSENUMS_H
+#include "ls.h"
 
-typedef enum e_lsflag	t_lsflag;
-
-enum	e_lsflag
+void	errorprint(char *path, int errnum)
 {
-	l = 1, R = 2, a = 4, r = 8, t = 16, g = 32, f = 64
-};
+	ft_printf("ft_ls: %s: %s\n", path, strerror(errnum));
+}
 
-#endif
+int		test_input(char *input)
+{
+	char	*fixed;
+	DIR		*test;
+
+	fixed = fix_input(input);
+	test = opendir(fixed);
+	free(fixed);
+	if (errno)
+	{
+		errorprint(input, errno);
+		errno = 0;
+		return (1);
+	}
+	closedir(test);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 16:36:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:39:01 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
 	stats = (struct stat *)malloc(sizeof(struct stat));
 	stat(fpath, stats);
 	free(fpath);
-//printf("\n%s %d\n", direct->d_name, is_type(*stats, S_IFDIR));
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->direct = direct;

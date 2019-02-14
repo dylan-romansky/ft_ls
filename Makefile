@@ -6,14 +6,14 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/12 19:14:10 by dromansk         ###   ########.fr        #
+#    Updated: 2019/02/13 17:06:18 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
 SRCS = ./src/*.c ./src/struct_handling/*.c ./src/printing/*.c ./src/checks/*.c\
-	   ./src/flags_and_path/*.c
+	   ./src/flags_and_path/*.c ./src/error/*.c
 
 I = -I ./includes -I ./libft/includes
 
@@ -42,4 +42,4 @@ reclean: re
 	make clean
 
 test: reclean
-	./$(NAME) -R
+	./$(NAME) -y

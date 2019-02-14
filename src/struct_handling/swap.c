@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lsenums.h                                          :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/08 15:02:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 14:23:50 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/13 15:24:32 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/13 15:27:34 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LSENUMS_H
-# define LSENUMS_H
+#include "ls.h"
 
-typedef enum e_lsflag	t_lsflag;
-
-enum	e_lsflag
+void	dir_swap(t_direct **current)
 {
-	l = 1, R = 2, a = 4, r = 8, t = 16, g = 32, f = 64
-};
+	t_direct	*tmp;
 
-#endif
+	tmp = (*current)->next->next;
+	(*current)->next->next = (*current);
+	(*current)->next = tmp;
+}

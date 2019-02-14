@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 16:46:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:42:47 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_list(t_direct *d)
 			d = d->next;
 		else
 		{
-			if ((d->flags & l && d->flags & a) || d->flags & g)
+			if (d->flags & l || d->flags & g)
 				print_info(d);
 			ft_printf("%s", d->direct->d_name);
 			ft_putchar('\n');

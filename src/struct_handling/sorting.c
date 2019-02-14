@@ -6,21 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 16:15:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 15:39:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
-
-void	dir_swap(t_direct **current)
-{
-	t_direct	*tmp;
-
-	tmp = (*current)->next->next;
-	(*current)->next->next = (*current);
-	(*current)->next = tmp;
-}
 
 int		is_sorted(char *s1, char *s2)
 {
@@ -53,6 +44,34 @@ int		t_is_sorted(char *d1, char *d2)
 			return(is_sorted(d1, d2) ? t : 0);
 	}
 	return (0);
+}
+
+void	f_sort(t_direct **list)
+{
+	t_direct	*dir;
+	t_direct	*last;
+
+	dir = *list;
+	last = NULL;
+	while (dir->next)
+	{
+		if (!(ft_strcmp(dir->next->direct->d_name, ".") &&
+			   ft_strcmp(dir->next->direct->d_name, "..")) &&
+				!is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+		{
+			if (dir != *list)
+				last->next = dir->next;
+			else
+				*list = dir->next;
+			dir_swap(&dir);
+			dir = *list;
+		}
+		else
+		{
+			last = dir;
+			dir = dir->next ? dir->next : dir;
+		}
+	}
 }
 
 void	t_sort(t_direct **list)

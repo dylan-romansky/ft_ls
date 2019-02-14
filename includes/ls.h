@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/12 19:12:11 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 16:45:26 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,39 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-# ifndef st_mtimespec
-# define st_mtimespec st_mtim
-# endif
+/*
+**# ifndef st_mtimespec
+**# define st_mtimespec st_mtim
+**# endif
+*/
 
 /*
-** handle flags -l -R -a -r -t
-** bonus -u -f -g -d, colours
+** bonus -u -d, colours
+** u = time of last access, d makes directories plain files
 */
 
 int			ft_ls(char *path, unsigned char flags);
 int			get_flags(char **s, int size);
 char		**get_path(int size, char **input);
+char		*fix_input(char *input);
 void		del_path(char **path);
 
 t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
+int			is_end(t_direct *dir);
 
 char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
 void		sort_dir(t_direct **list);
+void		f_sort(t_direct **list);
+void		dir_swap(t_direct **current);
 void		t_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
+
+int			test_input(char *input);
 
 #endif
