@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 17:20:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 17:21:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int		test_input(char *input)
 	char	*fixed;
 	DIR		*test;
 
-	if (!input)
-		return (0);
 	fixed = fix_input(input);
 	test = opendir(fixed);
 	free(fixed);
