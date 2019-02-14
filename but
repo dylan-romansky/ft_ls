@@ -1,0 +1,11 @@
+total 2906$
+-rw-r--r--  1 2018_august     1415 Feb 14 12:52 Makefile$
+-rw-r--r--  1 2018_august        0 Feb 13 20:27 a$
+-rw-r--r--  1 2018_august        9 Feb  7 14:06 author$
+-rw-r--r--  1 2018_august        0 Feb 14 13:14 but$
+-rw-r--r--  1 2018_august  1462757 Feb  7 14:06 ft_ls.en.pdf$
+drwxr-xr-x  2 2018_august     4096 Feb 14 13:07 includes$
+drwxr-xr-x  4 2018_august     4096 Feb 14 13:12 libft$
+-rw-r--r--  1 2018_august     9767 Feb 14 12:52 lscolors$
+drwxr-xr-x  7 2018_august     4096 Feb 14 13:07 src$
+lrwxrwxrwx  1 2018_august        1 Feb 13 20:27 symlink -> a$
