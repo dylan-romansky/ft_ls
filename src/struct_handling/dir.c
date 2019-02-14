@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 22:37:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 13:05:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,17 @@ int			num_len(long long n)
 	return (i);
 }
 
-void		fix_size_pad(t_direct **dir)
+void		fix_size_pad(t_direct **dir, int size)
 {
 	t_direct		*d;
-	int				size;
 
 	d = *dir;
-	size = d->size_pad;
-	while (d->next)
+	while (d)
 	{
-		if (d->next->size_pad > size)
+		if (d->size_pad > size)
 		{
-			size = d->next->size_pad;
-			d->size_pad = size;
-			fix_size_pad(dir);
+			fix_size_pad(dir, d->size_pad);
+			return ;
 		}
 		d->size_pad = size;
 		d = d->next;

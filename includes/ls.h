@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:50:21 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 12:58:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		del_path(char **path);
 t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
-void		fix_size_pad(t_direct **dir);
+void		fix_size_pad(t_direct **dir, int size);
 int			is_end(t_direct *dir);
 
 char		*handle_gid(gid_t st_gid);
