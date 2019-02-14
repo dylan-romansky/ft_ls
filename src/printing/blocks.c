@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 18:51:41 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:51:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	get_blocks(t_direct *dir)
 	blocks = 0;
 	while (dir)
 	{
-		while (!(dir->flags & a) && !(ft_strcmp(dir->direct->d_name, ".") &&
-					ft_strcmp(dir->direct->d_name, "..")))
+		while (dir->next && !(dir->flags & a) && *(dir->direct->d_name) == '.')
 			dir = dir->next;
 		blocks += dir->stats->st_blocks;
 		dir = dir->next;
