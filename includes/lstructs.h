@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:09:11 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:04:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_ftypes	t_ftypes;
 
 struct	s_direct
 {
-	struct dirent	*direct;
+	char			*name;
 	struct stat		*stats;
 	unsigned char	flags;
 	char			*path;

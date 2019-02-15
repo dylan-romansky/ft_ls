@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:42:07 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:20:57 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	print_link(t_direct *d)
 	int				ret;
 	char			*path;
 
-	path = ft_strjoin(d->path, d->direct->d_name);
+	path = ft_strjoin(d->path, d->name);
 	ret = readlink(path, link, BUFF_SIZE);
 	link[ret] = '\0';
-	ft_printf("%s -> %s\n", d->direct->d_name, link);
+	ft_printf("%s -> %s\n", d->name, link);
 	free(path);
 }
 
@@ -73,7 +73,7 @@ void	print_list(t_direct *d)
 		get_blocks(d);
 	while (d)
 	{
-		if (*(d->direct->d_name) == '.' && !(d->flags & a))
+		if (*(d->name) == '.' && !(d->flags & a))
 			d = d->next;
 		else
 		{
@@ -83,7 +83,7 @@ void	print_list(t_direct *d)
 						|| d->flags & l))
 				print_link(d);
 			else
-				ft_printf("%s\n", d->direct->d_name);
+				ft_printf("%s\n", d->name);
 			d = d->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:22:21 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:22:29 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	f_sort(t_direct **list)
 	last = NULL;
 	while (dir->next)
 	{
-		if (!(ft_strcmp(dir->next->direct->d_name, ".") &&
-					ft_strcmp(dir->next->direct->d_name, "..")) &&
-				!is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+		if (!(ft_strcmp(dir->next->name, ".") &&
+					ft_strcmp(dir->next->name, "..")) &&
+				!is_sorted(dir->name, dir->next->name))
 		{
 			if (dir != *list)
 				last->next = dir->next;
@@ -84,7 +84,7 @@ void	t_sort(t_direct **list)
 	while (dir->next)
 	{
 		if ((t & dir->flags)
-				== t_is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+				== t_is_sorted(dir->name, dir->next->name))
 		{
 			if (dir != *list)
 				last->next = dir->next;
@@ -111,7 +111,7 @@ void	sort_dir(t_direct **list)
 	while (dir->next)
 	{
 		if ((r & dir->flags) ==
-				is_sorted(dir->direct->d_name, dir->next->direct->d_name))
+				is_sorted(dir->name, dir->next->name))
 		{
 			if (dir != *list)
 				last->next = dir->next;

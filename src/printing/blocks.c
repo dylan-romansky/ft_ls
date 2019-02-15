@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 19:51:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:19:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 
 void	get_blocks(t_direct *dir)
 {
-	int		blocks;
+	int			blocks;
 
 	blocks = 0;
 	while (dir)
 	{
-		while (dir->next && !(dir->flags & a) && *(dir->direct->d_name) == '.')
+		while (dir->next && !(dir->flags & a) && *(dir->name) == '.')
 			dir = dir->next;
 		blocks += dir->stats->st_blocks;
 		dir = dir->next;
 	}
 	ft_printf("total %d\n", blocks);
+}
+
+void	print_one(char *file, unsigned char flags)
+{
+	t_direct	*ffile;
+
+	ffile = new_direct(file, "", flags);
+	print_list(ffile);
+	free(ffile);
 }

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:46:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:26:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		flags_error(char e)
 
 int		test_input(char *input)
 {
-	char	*fixed;
-	DIR		*test;
+	char		*fixed;
+	struct stat	test;
 
-	fixed = fix_input(input);
-	test = opendir(fixed);
+	fixed = ft_strlen(input) ? fix_input(input) : ft_strdup("./");
+	lstat(fixed, &test);
 	free(fixed);
 	if (errno)
 	{
@@ -38,6 +38,7 @@ int		test_input(char *input)
 		errno = 0;
 		return (1);
 	}
-	closedir(test);
+	if (!is_type(test, S_IFDIR))
+		return (2);
 	return (0);
 }

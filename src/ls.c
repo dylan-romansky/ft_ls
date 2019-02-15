@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 12:59:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:17:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	check_recursion(t_direct *dir)
 
 	while (dir)
 	{
-		if (!(dir->flags & a) && *dir->direct->d_name == '.')
+		if (!(dir->flags & a) && *dir->name == '.')
 			dir = dir->next;
-		else if (ft_strcmp(dir->direct->d_name, ".") &&
-				ft_strcmp(dir->direct->d_name, "..") &&
+		else if (ft_strcmp(dir->name, ".") &&
+				ft_strcmp(dir->name, "..") &&
 				is_type(*(dir->stats), S_IFDIR))
 		{
-			fpath = ft_strjoin(dir->path, dir->direct->d_name);
+			fpath = ft_strjoin(dir->path, dir->name);
 			ft_printf("\n%s\n", fpath);
 			ft_ls(fix_input(fpath), dir->flags);
 			free(fpath);
@@ -58,7 +58,7 @@ int		ft_ls(char *path, unsigned char flags)
 	DIR				*s;
 
 	s = opendir(path);
-	d = new_direct(readdir(s), path, flags);
+	d = new_direct(readdir(s)->d_name, path, flags);
 	while (add_dir(&d, readdir(s)))
 		continue ;
 	if (!(flags & f))
@@ -86,7 +86,7 @@ int		main(int ac, char **av)
 	flags = get_flags(av, ac);
 	if (flags == 255)
 		return (1);
-	path = get_path(ac, av);
+	path = get_path(ac, av, flags);
 	size = 0;
 	i = 0;
 	while (path[size])

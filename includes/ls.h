@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 12:58:46 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:16:56 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # ifdef __linux__
 # include "linux.h"
 # endif
-# define BUFF_SIZE 12
+# define BUFF_SIZE 1024
 
 /*
 ** bonus -u -d, colours
@@ -42,11 +42,11 @@
 
 int			ft_ls(char *path, unsigned char flags);
 int			get_flags(char **s, int size);
-char		**get_path(int size, char **input);
+char		**get_path(int size, char **input, unsigned char flags);
 char		*fix_input(char *input);
 void		del_path(char **path);
 
-t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags);
+t_direct	*new_direct(char *name, char *path, unsigned char flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 void		fix_size_pad(t_direct **dir, int size);
@@ -56,6 +56,7 @@ char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
+void		print_one(char *file, unsigned char flags);
 void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);

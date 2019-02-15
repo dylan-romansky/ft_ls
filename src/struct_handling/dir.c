@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 13:05:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:13:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,24 @@ int			add_dir(t_direct **dir, struct dirent *ent)
 	while (n->next)
 		n = n->next;
 	tmp = n->flags;
-	n->next = new_direct(ent, n->path, tmp);
+	n->next = new_direct(ent->d_name, n->path, tmp);
 	return (1);
 }
 
-t_direct	*new_direct(struct dirent *direct, char *path, unsigned char flags)
+t_direct	*new_direct(char *name, char *path, unsigned char flags)
 {
 	t_direct		*new;
 	struct stat		*stats;
 	char			*fpath;
 
-	fpath = ft_strcmp(direct->d_name, ".") && ft_strcmp(direct->d_name, "..") ?
-		ft_strjoin(path, direct->d_name) : ft_strdup(direct->d_name);
+	fpath = (*name == '.' && (name[1] == '.' || name [1] == '/')) ?
+		ft_strdup(name) : ft_strjoin(path, name);
 	stats = (struct stat *)malloc(sizeof(struct stat));
 	lstat(fpath, stats);
 	free(fpath);
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
-	new->direct = direct;
+	new->name = name;
 	new->user = handle_uid(stats->st_uid);
 	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
