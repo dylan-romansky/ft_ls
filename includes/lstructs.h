@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 16:04:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 20:28:50 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define LSTRUCTS_H
 # include <dirent.h>
 
-typedef struct s_direct	t_direct;
-typedef struct s_ftypes	t_ftypes;
+typedef struct s_direct		t_direct;
+typedef struct s_ftypes		t_ftypes;
+typedef struct s_filetypes	t_filetypes;
 
 struct	s_direct
 {
@@ -26,7 +27,9 @@ struct	s_direct
 	char			*user;
 	char			*group;
 	long			size;
-	long long		size_pad;
+	int				size_pad;
+	int				userlen;
+	int				grouplen;
 	t_direct		*sub;
 	t_direct		*next;
 };
@@ -35,6 +38,13 @@ struct	s_ftypes
 {
 	char	type;
 	int		flag;
+};
+
+struct	s_filetypes
+{
+	int		type;
+	char	c;
+//	char	*colour;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 16:13:20 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 19:36:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ t_direct	*new_direct(char *name, char *path, unsigned char flags)
 		return (NULL);
 	new->name = name;
 	new->user = handle_uid(stats->st_uid);
+	new->userlen = ft_strlen(new->user);
 	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
+	new->grouplen = ft_strlen(new->group);
 	new->size_pad = num_len(new->size);
 	new->stats = stats;
 //	printf("%s mode %d\nfifo %d\nchr %d\ndir %d\nblk %d\nreg %d\nlink %d\nsock %d\nwht %d\n", direct->d_name, S_IFMT & stats->st_mode, S_IFIFO, S_IFCHR, S_IFDIR, S_IFBLK, S_IFREG, S_IFLNK, S_IFSOCK, S_IFWHT);

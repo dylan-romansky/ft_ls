@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 16:20:57 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 20:26:31 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	print_time(struct stat *info)
 
 void	print_perm(struct stat *info, int b)
 {
-	if (is_type(*info, S_IFDIR))
+/*	if (is_type(*info, S_IFDIR))
 		ft_printf("d");
 	else if (is_type(*info, S_IFLNK))
 		ft_printf("l");
 	else
-		ft_printf("-");
+		ft_printf("-");*/
+	print_type(info);
 	while (b)
 	{
 		b & info->st_mode ? ft_printf("r") : ft_printf("-");
@@ -47,10 +48,10 @@ void	print_info(t_direct *d)
 
 	b = 256;
 	print_perm(d->stats, b);
-	ft_printf("  %d", d->stats->st_nlink);
+	ft_printf("  %*d", num_len(d->stats->st_nlink), d->stats->st_nlink);
 	if (!(d->flags & g))
-		ft_printf(" %8s ", d->user);
-	ft_printf(" %8s  %*ld", d->group, d->size_pad, d->size);
+		ft_printf(" %*s ", d->userlen, d->user);
+	ft_printf(" %*s  %*ld", d->grouplen, d->group, d->size_pad, d->size);
 	print_time(d->stats);
 }
 

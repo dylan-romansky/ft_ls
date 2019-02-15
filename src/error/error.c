@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 16:26:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/14 18:51:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		test_input(char *input)
 	char		*fixed;
 	struct stat	test;
 
-	fixed = ft_strlen(input) ? fix_input(input) : ft_strdup("./");
-	lstat(fixed, &test);
+	fixed = ft_strlen(input) ? ft_strdup(input) : ft_strdup("./");
+	lstat(input, &test);
 	free(fixed);
 	if (errno)
 	{
