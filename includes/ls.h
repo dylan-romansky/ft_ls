@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 20:08:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:59:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			num_len(long long n);
 void		fix_size_pad(t_direct **dir, int size);
 void		fix_userlen(t_direct **dir, int size);
 void		fix_grouplen(t_direct **dir, int size);
+void		fix_link_pad(t_direct **dir, int size);
 
 int			is_end(t_direct *dir);
 

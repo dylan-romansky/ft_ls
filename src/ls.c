@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 19:38:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:56:08 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		ft_ls(char *path, unsigned char flags)
 	fix_size_pad(&d, d->size_pad);
 	fix_userlen(&d, d->userlen);
 	fix_grouplen(&d, d->grouplen);
+	fix_link_pad(&d, d->link_pad);
 	print_list(d);
 	if (flags & R)
 		check_recursion(d);

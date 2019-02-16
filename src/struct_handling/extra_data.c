@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 19:46:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 21:20:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ void	fix_grouplen(t_direct **dir, int size)
 			return ;
 		}
 		d->grouplen = size;
+		d = d->next;
+	}
+}
+
+void	fix_link_pad(t_direct **dir, int size)
+{
+	t_direct		*d;
+
+	d = *dir;
+	while (d)
+	{
+		if (d->link_pad > size)
+		{
+			fix_link_pad(dir, d->link_pad);
+			return ;
+		}
+		d->link_pad = size;
 		d = d->next;
 	}
 }

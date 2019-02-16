@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 20:47:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 21:01:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	print_perm(struct stat *info, int b)
 		}
 		else
 			ft_printf("-");
-//		b & info->st_mode ? ft_printf("x") : ft_printf("-");
 		b >>= 1;
 	}
 }
@@ -56,10 +55,10 @@ void	print_info(t_direct *d)
 
 	b = 256;
 	print_perm(d->stats, b);
-	ft_printf("  %*d", num_len(d->stats->st_nlink), d->stats->st_nlink);
+	ft_printf("  %*d", d->link_pad, d->stats->st_nlink);
 	if (!(d->flags & g))
-		ft_printf(" %*s ", d->userlen, d->user);
-	ft_printf(" %*s  %*ld", d->grouplen, d->group, d->size_pad, d->size);
+		ft_printf(" %-*s ", d->userlen, d->user);
+	ft_printf(" %-*s  %*ld", d->grouplen, d->group, d->size_pad, d->size);
 	print_time(d->stats);
 }
 
