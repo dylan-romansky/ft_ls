@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 16:00:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:47:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,28 @@ void	print_time(struct stat *info)
 
 void	print_perm(struct stat *info, int b)
 {
-/*	if (is_type(*info, S_IFDIR))
-		ft_printf("d");
-	else if (is_type(*info, S_IFLNK))
-		ft_printf("l");
-	else
-		ft_printf("-");*/
 	while (b)
 	{
 		b & info->st_mode ? ft_printf("r") : ft_printf("-");
 		b >>= 1;
 		b & info->st_mode ? ft_printf("w") : ft_printf("-");
 		b >>= 1;
-		b & info->st_mode ? ft_printf("x") : ft_printf("-");
+		if (b & info->st_mode || info->st_mode & S_ISUID ||
+				info->st_mode & S_ISVTX)
+		{
+			if (!(b & info->st_mode))
+				ft_printf("S");
+			else if ((b == 64 && info->st_mode & S_ISUID)
+				   	|| (b == 8 && info->st_mode & S_ISGID))
+				ft_printf("s");
+			else if (b == 1 && info->st_mode & S_ISVTX)
+				b & info->st_mode ? ft_printf("t") : ft_printf("T");
+			else
+				ft_printf("x");
+		}
+		else
+			ft_printf("-");
+//		b & info->st_mode ? ft_printf("x") : ft_printf("-");
 		b >>= 1;
 	}
 }

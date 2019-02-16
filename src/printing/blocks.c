@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 16:02:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 18:57:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	print_type(t_direct *d)
 	i = 0;
 	while (i <= 13 && !is_type(*d->stats, g_filetypes[i].type))
 		i++;
+	if (i == 4 && d->stats->st_mode & S_IXUSR)
+		i = 13;
 	if (d->flags & l || d->flags & g)
 	{
 		ft_printf("%c", g_filetypes[i].c);

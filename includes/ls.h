@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 15:41:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 20:08:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,49 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+# define BUFF_SIZE 1024
 # ifdef __linux__
 # include "linux.h"
 # endif
-# define BUFF_SIZE 1024
 
 /*
+** NAME_MAX and PATH_MAX for your maximum buffers
 ** bonus -u -d, colours
 ** u = time of last access, d makes directories plain files
+*/
+/*
+ 1.   If r, the file is readable; if -, it is not readable.
+
+ 2.   If w, the file is writable; if -, it is not writable.
+
+ 3.   The first of the following that applies:
+
+            S     If in the owner permissions, the file is not exe-
+                  cutable and set-user-ID mode is set.  If in the
+                  group permissions, the file is not executable and
+                  set-group-ID mode is set.
+
+            s     If in the owner permissions, the file is exe-
+                  cutable and set-user-ID mode is set.  If in the
+                  group permissions, the file is executable and set-
+                  group-ID mode is set.
+
+            x     The file is executable or the directory is search-
+                  able.
+
+            -     The file is neither readable, writable, exe-
+                  cutable, nor set-user-ID nor set-group-ID mode,
+                  nor sticky.  (See below.)
+
+      These next two apply only to the third character in the last
+      group (other permissions).
+
+            T     The sticky bit is set (mode 1000), but not execute
+                  or search permission.  (See chmod(1) or
+                  sticky(8).)
+
+            t     The sticky bit is set (mode 1000), and is search-
+                  able or executable.  (See chmod(1) or sticky(8).)
 */
 
 int			ft_ls(char *path, unsigned char flags);
