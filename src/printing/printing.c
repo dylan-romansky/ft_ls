@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 20:26:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 16:00:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_perm(struct stat *info, int b)
 		ft_printf("l");
 	else
 		ft_printf("-");*/
-	print_type(info);
 	while (b)
 	{
 		b & info->st_mode ? ft_printf("r") : ft_printf("-");
@@ -64,7 +63,7 @@ void	print_link(t_direct *d)
 	path = ft_strjoin(d->path, d->name);
 	ret = readlink(path, link, BUFF_SIZE);
 	link[ret] = '\0';
-	ft_printf("%s -> %s\n", d->name, link);
+	ft_printf(" -> %s", link);
 	free(path);
 }
 
@@ -78,13 +77,7 @@ void	print_list(t_direct *d)
 			d = d->next;
 		else
 		{
-			if (d->flags & l || d->flags & g)
-				print_info(d);
-			if (is_type(*(d->stats), S_IFLNK) && (d->flags & g
-						|| d->flags & l))
-				print_link(d);
-			else
-				ft_printf("%s\n", d->name);
+			print_type(d);
 			d = d->next;
 		}
 	}

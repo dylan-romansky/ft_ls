@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 20:26:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 16:02:16 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,28 @@ void	print_one(char *file, unsigned char flags)
 	free(ffile);
 }
 
-void	print_type(struct stat *info)
+void	print_name(t_direct *d, int i)
+{
+	if (d->flags & G)
+		ft_printf("%s%s{eoc}", g_filetypes[i].colour, d->name);
+	else
+		ft_printf("%s", d->name);
+	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
+		print_link(d);
+	ft_putchar('\n');
+}
+
+void	print_type(t_direct *d)
 {
 	int			i;
 
 	i = 0;
-	while (i <= 13 && !is_type(*info, g_filetypes[i].type))
+	while (i <= 13 && !is_type(*d->stats, g_filetypes[i].type))
 		i++;
-	ft_printf("%c", g_filetypes[i].c);
+	if (d->flags & l || d->flags & g)
+	{
+		ft_printf("%c", g_filetypes[i].c);
+		print_info(d);
+	}
+	print_name(d, i);
 }

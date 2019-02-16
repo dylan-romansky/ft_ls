@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 20:28:50 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:02:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ struct	s_filetypes
 {
 	int		type;
 	char	c;
-//	char	*colour;
+	char	*colour;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 20:25:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:41:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
-void		print_type(struct stat *info);
+void		print_type(t_direct *dir);
+void		print_link(t_direct *dir);
+void		print_info(t_direct *dir);
 void		print_one(char *file, unsigned char flags);
 void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
