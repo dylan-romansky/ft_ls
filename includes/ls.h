@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 21:46:25 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/15 21:53:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ from man 4 tty:
                  is set by user software and is the means by which most full-
                  screen oriented programs determine the screen size.  The
                  winsize structure is defined in ~ <sys/ioctl.h>.
+
+				 pattern is 2 tab width
 */
 
 int			ft_ls(char *path, unsigned char flags);
