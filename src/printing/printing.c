@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 21:01:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/18 21:30:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void	print_link(t_direct *d)
 
 void	print_list(t_direct *d)
 {
+	struct winsize	ws;
+
+	ioctl(1, TIOCGWINSZ, &ws);
+	printf("rows: %d\ncols: %d\n", ws.ws_row, ws.ws_col);
 	if (d->flags & l || d->flags & g)
 		get_blocks(d);
 	while (d)
@@ -88,5 +92,6 @@ void	print_list(t_direct *d)
 			print_type(d);
 			d = d->next;
 		}
+		//put formula for column here
 	}
 }
