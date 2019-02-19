@@ -13,4 +13,5 @@
 #ifndef ARCH_H
 # define ARCH_H
 # define st_mtimespec st_mtim
+# define S_IFWHT 0160000
 #endif

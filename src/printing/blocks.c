@@ -46,7 +46,7 @@ void	print_name(t_direct *d, int i)
 		ft_printf("%s", d->name);
 	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
-//	ft_putchar('\n');
+	ft_putchar('\n');
 }
 
 void	print_type(t_direct *d)

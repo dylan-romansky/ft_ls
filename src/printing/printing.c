@@ -77,10 +77,6 @@ void	print_link(t_direct *d)
 
 void	print_list(t_direct *d)
 {
-	struct winsize	ws;
-
-	ioctl(1, TIOCGWINSZ, &ws);
-	printf("rows: %d\ncols: %d\n", ws.ws_row, ws.ws_col);
 	if (d->flags & l || d->flags & g)
 		get_blocks(d);
 	while (d)
