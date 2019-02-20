@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 21:53:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:03:29 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ from man 4 tty:
                  winsize structure is defined in ~ <sys/ioctl.h>.
 
 				 pattern is 2 tab width
+
+other notes:
+			make sure if the -l isn't specified but the path to a symlink is
+			(ex: /var or /var/) that you are printing the contents of that symlink
 */
 
 int			ft_ls(char *path, unsigned char flags);
@@ -120,7 +124,7 @@ void		t_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 
-int			test_input(char *input);
+int			test_input(char *input, unsigned char flags);
 int			flags_error(char e);
 
 #endif

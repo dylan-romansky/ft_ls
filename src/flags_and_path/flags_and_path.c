@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 15:39:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:03:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char		**get_path(int size, char **input, unsigned char flags)
 		i++;
 	while (i < size)
 	{
-		error = test_input(input[i]);
+		error = test_input(input[i], flags);
 		if (!error)
 			paths = array_join(paths, ft_strdup(input[i]));
 		else if (error == 2)
