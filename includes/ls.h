@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 18:03:29 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:27:13 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,13 @@ from man 4 tty:
                  screen oriented programs determine the screen size.  The
                  winsize structure is defined in ~ <sys/ioctl.h>.
 
-				 pattern is 2 tab width
+				 pattern is 2 tab width, hard part is the columns are 
+				 alphabetical. Will need to find a way to math out column
+				 size and number if I'm gonna make this work. Probs will just
+				 skip for now.
 
 other notes:
-			make sure if the -l isn't specified but the path to a symlink is
-			(ex: /var or /var/) that you are printing the contents of that symlink
+			find out what the numbers 'x,' are when doing ls -l /dev/
 */
 
 int			ft_ls(char *path, unsigned char flags);
