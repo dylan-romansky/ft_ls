@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 18:27:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 20:47:14 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ from man 4 tty:
 				 skip for now.
 
 other notes:
-			find out what the numbers 'x,' are when doing ls -l /dev/
+			find out what nameless entries are in /dev/
+			and find out how to print extra @ and + and the like for /
 */
 
 int			ft_ls(char *path, unsigned char flags);
@@ -118,6 +119,7 @@ void		print_type(t_direct *dir);
 void		print_link(t_direct *dir);
 void		print_info(t_direct *dir);
 void		print_one(char *file, unsigned char flags);
+void		print_maj_min(t_direct *dir);
 void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);

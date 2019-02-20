@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/18 21:28:51 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:11:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,9 @@ void	print_type(t_direct *d)
 		print_info(d);
 	}
 	print_name(d, i);
+}
+
+void	print_maj_min(t_direct *d)
+{
+	ft_printf("%3d, %3d", major(d->stats->st_rdev), minor(d->stats->st_rdev));
 }

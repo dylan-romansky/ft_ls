@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/18 21:30:24 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/19 21:13:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ void	print_info(t_direct *d)
 	ft_printf("  %*d", d->link_pad, d->stats->st_nlink);
 	if (!(d->flags & g))
 		ft_printf(" %-*s ", d->userlen, d->user);
-	ft_printf(" %-*s  %*ld", d->grouplen, d->group, d->size_pad, d->size);
+	ft_printf(" %-*s  ", d->grouplen, d->group);
+	if (ft_strstr(d->path, "/dev"))
+		print_maj_min(d);
+	else
+		ft_printf("%*ld", d->size_pad, d->size);
 	print_time(d->stats);
 }
 
