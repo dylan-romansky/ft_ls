@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 21:13:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/20 20:32:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@ void	print_link(t_direct *d)
 
 	path = ft_strjoin(d->path, d->name);
 	ret = readlink(path, link, BUFF_SIZE);
+/*	if (ret < 0)
+	{
+		ft_putchar('\n');
+		errorprint(path, errno);
+		free(path);
+		exit(EXIT_FAILURE);
+	}*/
 	link[ret] = '\0';
 	ft_printf(" -> %s", link);
 	free(path);
@@ -92,6 +99,5 @@ void	print_list(t_direct *d)
 			print_type(d);
 			d = d->next;
 		}
-		//put formula for column here
 	}
 }

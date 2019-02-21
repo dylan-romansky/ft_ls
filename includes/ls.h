@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 20:47:14 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/20 20:37:00 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ from man 4 tty:
 				 skip for now.
 
 other notes:
-			find out what nameless entries are in /dev/
-			and find out how to print extra @ and + and the like for /
+			find out how to print extra @ and + and the like for /
 */
 
 int			ft_ls(char *path, unsigned char flags);
@@ -130,5 +129,6 @@ int			is_type(struct stat stats, unsigned int type);
 
 int			test_input(char *input, unsigned char flags);
 int			flags_error(char e);
+void		errorprint(char *path, int errnum);
 
 #endif
