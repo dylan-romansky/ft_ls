@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 18:03:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:37:00 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ int			get_flag(char *s)
 		{
 			if (*s == '1')
 				f = get_one(f);
-			while (i <= 8 && g_ftypes[i].type != *s)
+			while (i <= 9 && g_ftypes[i].type != *s)
 				i++;
-			if (i <= 8)
+			if (i <= 9)
 				f |= g_ftypes[i].flag;
 			else
 				return (flags_error(*s));
@@ -71,7 +71,7 @@ int			get_flag(char *s)
 	return (f);
 }
 
-char		**get_path(int size, char **input, unsigned char flags)
+char		**get_path(int size, char **input, short flags)
 {
 	int		i;
 	char	**paths;

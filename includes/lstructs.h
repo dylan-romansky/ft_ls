@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 14:40:41 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/15 20:54:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:57:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ typedef struct s_filetypes	t_filetypes;
 
 struct	s_direct
 {
-	char			*name;
-	struct stat		*stats;
-	unsigned char	flags;
-	char			*path;
-	char			*user;
-	char			*group;
-	long			size;
-	int				size_pad;
-	int				link_pad;
-	int				userlen;
-	int				grouplen;
-	t_direct		*sub;
-	t_direct		*next;
+	char		*name;
+	struct stat	*stats;
+	short		flags;
+	char		*path;
+	char		*user;
+	char		*group;
+	long		size;
+	int			size_pad;
+	int			link_pad;
+	int			userlen;
+	int			grouplen;
+	t_direct	*sub;
+	t_direct	*next;
 };
 
 struct	s_ftypes

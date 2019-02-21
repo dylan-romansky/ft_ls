@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/20 20:36:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:32:22 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,17 @@ void		fix_size_pad(t_direct **dir, int size)
 int			add_dir(t_direct **dir, struct dirent *ent)
 {
 	t_direct		*n;
-	unsigned char	tmp;
 
 	if (!ent)
 		return (0);
 	n = *dir;
 	while (n->next)
 		n = n->next;
-	tmp = n->flags;
-	n->next = new_direct(ent->d_name, n->path, tmp);
+	n->next = new_direct(ent->d_name, n->path, n->flags);
 	return (1);
 }
 
-t_direct	*new_direct(char *name, char *path, unsigned char flags)
+t_direct	*new_direct(char *name, char *path, short flags)
 {
 	t_direct		*new;
 	struct stat		*stats;

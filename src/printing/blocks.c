@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/20 15:32:57 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:42:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_blocks(t_direct *dir)
 	ft_printf("total %d\n", blocks);
 }
 
-void	print_one(char *file, unsigned char flags)
+void	print_one(char *file, short flags)
 {
 	t_direct	*ffile;
 
@@ -54,7 +54,7 @@ void	print_type(t_direct *d)
 	int			i;
 
 	i = 0;
-	while (i <= 13 && !is_type(*d->stats, g_filetypes[i].type))
+	while (i <= 15 && !is_type(*d->stats, g_filetypes[i].type))
 		i++;
 	if (i == 4 && d->stats->st_mode & S_IXUSR)
 		i = 13;
@@ -63,13 +63,15 @@ void	print_type(t_direct *d)
 		ft_printf("%c", g_filetypes[i].c);
 		print_info(d);
 	}
+	if (i == 2 && d->stats->st_mode & S_IWOTH)
+		i = d->stats->st_mode & S_ISVTX ? 14 : 15;
 	print_name(d, i);
 }
 
 void	print_maj_min(t_direct *d)
 {
 	if (is_type(*d->stats, S_IFCHR) || is_type(*d->stats, S_IFBLK))
-		ft_printf("%3d, %3d", major(d->stats->st_rdev), minor(d->stats->st_rdev));
+		ft_printf("  %3d, %3d", major(d->stats->st_rdev), minor(d->stats->st_rdev));
 	else
-		ft_printf("%8ld", d->size);
+		ft_printf("  %8ld", d->size);
 }

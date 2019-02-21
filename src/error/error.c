@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/19 20:16:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:33:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	errorprint(char *path, int errnum)
 int		flags_error(char e)
 {
 	ft_dprintf(2, "ft_ls: illegal option --%c\n", e);
-	ft_dprintf(2, "usage: ft_ls [-GRafglrt1] [file ...]\n");
-	return (255);
+	ft_dprintf(2, "usage: ft_ls [-GRafglort1] [file ...]\n");
+	return (512);
 }
 
-int		test_input(char *input, unsigned char flags)
+int		test_input(char *input, short flags)
 {
 	char		*fixed;
 	struct stat	ltest;

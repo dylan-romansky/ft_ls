@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/20 20:37:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:38:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ other notes:
 			find out how to print extra @ and + and the like for /
 */
 
-int			ft_ls(char *path, unsigned char flags);
+int			ft_ls(char *path, short flags);
 int			get_flags(char **s, int size);
-char		**get_path(int size, char **input, unsigned char flags);
+char		**get_path(int size, char **input, short flags);
 char		*fix_input(char *input);
 void		del_path(char **path);
 
-t_direct	*new_direct(char *name, char *path, unsigned char flags);
+t_direct	*new_direct(char *name, char *path, short flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 int			num_len(long long n);
@@ -117,7 +117,7 @@ void		print_list(t_direct *dir);
 void		print_type(t_direct *dir);
 void		print_link(t_direct *dir);
 void		print_info(t_direct *dir);
-void		print_one(char *file, unsigned char flags);
+void		print_one(char *file, short flags);
 void		print_maj_min(t_direct *dir);
 void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
@@ -127,7 +127,7 @@ void		t_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 
-int			test_input(char *input, unsigned char flags);
+int			test_input(char *input, short flags);
 int			flags_error(char e);
 void		errorprint(char *path, int errnum);
 
