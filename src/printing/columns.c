@@ -40,6 +40,8 @@ void		print_cols(t_direct *d, int cols, int size, int len)
 
 	counter = 1;
 	i = size / cols;
+	if (size % cols)
+		i++;
 	while (counter <= i)
 	{
 		print_every_i(d, i, len);
