@@ -91,7 +91,7 @@ void		column_count(t_direct *d, int len, int count)
 		cols = size / len;
 		extra = size % len;
 	}
-	split_dirs(d, cols, count, len, ws.ws_col % cols);
+	split_dirs(d, cols, count, len, extra);
 }
 
 void		print_col(t_direct *d)
