@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 16:21:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 23:43:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,18 @@ void		fix_grouplen(t_direct **dir, int size);
 void		fix_link_pad(t_direct **dir, int size);
 
 int			is_end(t_direct *dir);
+int			will_fit(int extra, t_direct *d, int columns);
 
 char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);
 
 void		print_list(t_direct *dir);
-void		print_type(t_direct *dir);
+void		print_type(t_direct *dir, int width);
 void		print_link(t_direct *dir);
 void		print_info(t_direct *dir);
 void		print_one(char *file, short flags);
 void		print_maj_min(t_direct *dir);
+void		print_col(t_direct *dir);
 void		get_blocks(t_direct *dir);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);

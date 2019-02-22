@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 14:42:59 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 01:03:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,17 @@ void	print_one(char *file, short flags)
 	free(ffile);
 }
 
-void	print_name(t_direct *d, int i)
+void	print_name(t_direct *d, int i, int width)
 {
 	if (d->flags & G)
-		ft_printf("%s%s{eoc}", g_filetypes[i].colour, d->name);
+		ft_printf("%s%-*s{eoc}", g_filetypes[i].colour, width, d->name);
 	else
-		ft_printf("%s", d->name);
+		ft_printf("%-*s", width, d->name);
 	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
-	ft_putchar('\n');
 }
 
-void	print_type(t_direct *d)
+void	print_type(t_direct *d, int width)
 {
 	int			i;
 
@@ -65,7 +64,7 @@ void	print_type(t_direct *d)
 	}
 	if (i == 2 && d->stats->st_mode & S_IWOTH)
 		i = d->stats->st_mode & S_ISVTX ? 14 : 15;
-	print_name(d, i);
+	print_name(d, i, width);
 }
 
 void	print_maj_min(t_direct *d)

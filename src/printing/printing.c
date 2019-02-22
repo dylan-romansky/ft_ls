@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 16:21:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 00:48:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,6 @@ void	print_link(t_direct *d)
 
 	path = ft_strjoin(d->path, d->name);
 	ret = readlink(path, link, PATH_MAX);
-/*	if (ret < 0)
-	{
-		ft_putchar('\n');
-		errorprint(path, errno);
-		free(path);
-		exit(EXIT_FAILURE);
-	}*/
 	link[ret] = '\0';
 	ft_printf(" -> %s", link);
 	free(path);
@@ -91,16 +84,14 @@ void	print_link(t_direct *d)
 
 void	print_list(t_direct *d)
 {
+	if (!(d->flags & 1) && !(d->flags & l) && !(d->flags & o) && !(d->flags & g))
+		print_col(d);
 	if (d->flags & l || d->flags & g)
 		get_blocks(d);
 	while (d)
 	{
-		if (*(d->name) == '.' && !(d->flags & a))
+			print_type(d, 1);
+			ft_putchar('\n');
 			d = d->next;
-		else
-		{
-			print_type(d);
-			d = d->next;
-		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 15:33:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 23:20:06 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		flags_error(char e)
 {
 	ft_dprintf(2, "ft_ls: illegal option --%c\n", e);
 	ft_dprintf(2, "usage: ft_ls [-GRafglort1] [file ...]\n");
-	return (512);
+	return (-1);
 }
 
 int		test_input(char *input, short flags)

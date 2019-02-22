@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 15:32:18 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 00:45:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int		ft_ls(char *path, short flags)
 	t_direct		*d;
 	DIR				*s;
 
+	d = NULL;
 	s = opendir(path);
-	d = new_direct(readdir(s)->d_name, path, flags);
+	while (!d)
+		d = new_direct(readdir(s)->d_name, path, flags);
 	while (add_dir(&d, readdir(s)))
 		continue ;
 	if (!(flags & f))
@@ -87,7 +89,7 @@ int		main(int ac, char **av)
 
 	errno = 0;
 	flags = get_flags(av, ac);
-	if (flags == 512)
+	if (flags == -1)
 		return (1);
 	path = get_path(ac, av, flags);
 	size = 0;
