@@ -40,6 +40,9 @@
 ** u = time of last access, d makes directories plain files
 */
 /*
+ add single quote around names with spaces in them
+ -goes around entire path
+ recursion seems broken
  1.   If r, the file is readable; if -, it is not readable.
 
  2.   If w, the file is writable; if -, it is not writable.

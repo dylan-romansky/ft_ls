@@ -61,8 +61,8 @@ t_direct	*new_direct(char *name, char *path, short flags)
 
 	if (*name == '.' && !(flags & a))
 		return (NULL);
-	fpath = (*name == '.' && (name[1] == '.' || name [1] == '/')) ?
-		ft_strdup(name) : ft_strjoin(path, name);
+	fpath = (*name == '.' && (name[1] == '.' || name[1] == '/')) ?
+			ft_strdup(name) : ft_strjoin(path, name);
 	stats = (struct stat *)malloc(sizeof(struct stat));
 	lstat(fpath, stats);
 	free(fpath);

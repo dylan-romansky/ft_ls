@@ -40,10 +40,20 @@ void	print_one(char *file, short flags)
 
 void	print_name(t_direct *d, int i, int width)
 {
+	int			len;
+
 	if (d->flags & G)
-		ft_printf("%s%-*s{eoc}", g_filetypes[i].colour, width, d->name);
+	{
+		ft_printf("%s", g_filetypes[i].colour);
+		ft_strchr(d->name, ' ') ? ft_printf("'%s'", d->name) : ft_printf("%s", d->name);
+		ft_printf("{eoc}");
+	}
 	else
-		ft_printf("%-*s", width, d->name);
+		ft_strchr(d->name, ' ') ? ft_printf("'%s'", d->name) : ft_printf("%s", d->name);
+	len = ft_strlen(d->name);
+	width = width > len ? width - len : 0;
+	while (width--)
+		ft_putchar(' ');
 	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
 }

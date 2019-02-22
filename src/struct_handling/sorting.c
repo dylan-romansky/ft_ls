@@ -27,20 +27,18 @@ int		is_sorted(char *s1, char *s2)
 
 int		t_is_sorted(char *d1, char *d2)
 {
-	struct stat	*s1;
-	struct stat	*s2;
+	struct stat	s1;
+	struct stat	s2;
 
-	s1 = (struct stat *)malloc(sizeof(struct stat));
-	s2 = (struct stat *)malloc(sizeof(struct stat));
-	stat(d1, s1);
-	stat(d2, s2);
-	if (s1->st_mtimespec.tv_sec < s2->st_mtimespec.tv_sec)
+	stat(d1, &s1);
+	stat(d2, &s2);
+	if (s1.st_mtimespec.tv_sec < s2.st_mtimespec.tv_sec)
 		return (t);
-	else if (s1->st_mtimespec.tv_sec == s2->st_mtimespec.tv_sec)
+	else if (s1.st_mtimespec.tv_sec == s2.st_mtimespec.tv_sec)
 	{
-		if (s1->st_mtimespec.tv_nsec < s2->st_mtimespec.tv_nsec)
+		if (s1.st_mtimespec.tv_nsec < s2.st_mtimespec.tv_nsec)
 			return (t);
-		else if (s1->st_mtimespec.tv_nsec == s2->st_mtimespec.tv_nsec)
+		else if (s1.st_mtimespec.tv_nsec == s2.st_mtimespec.tv_nsec)
 			return (is_sorted(d1, d2) ? t : 0);
 	}
 	return (0);

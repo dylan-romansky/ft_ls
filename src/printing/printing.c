@@ -84,14 +84,21 @@ void	print_link(t_direct *d)
 
 void	print_list(t_direct *d)
 {
+	if (!d)
+	{
+		return ;
+	}
 	if (!(d->flags & 1) && !(d->flags & l) && !(d->flags & o) && !(d->flags & g))
+	{
 		print_col(d);
+		return ;
+	}
 	if (d->flags & l || d->flags & g)
 		get_blocks(d);
 	while (d)
 	{
-			print_type(d, 1);
-			ft_putchar('\n');
-			d = d->next;
+		print_type(d, 1);
+		ft_putchar('\n');
+		d = d->next;
 	}
 }

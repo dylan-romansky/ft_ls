@@ -42,7 +42,8 @@ int		test_input(char *input, short flags)
 		return (1);
 	}
 	if ((flags & l && is_type(ltest, S_IFLNK) &&
-			input[ft_strlen(input) - 1] != '/') || !is_type(test, S_IFDIR))
+			(input[ft_strlen(input) - 1] != '/' || (*input == '\'' &&
+			input[ft_strlen(input) - 2] != '/'))) || !is_type(test, S_IFDIR))
 		return (2);
 	return (0);
 }

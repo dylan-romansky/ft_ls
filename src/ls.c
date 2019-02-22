@@ -13,18 +13,14 @@
 #include "ls.h"
 #include "lsenums.h"
 
-/*
-** restructure so it properly parses [-flags] [path]
-*/
-
 char	*fix_input(char *input)
 {
 	char	*s;
 
 	s = ft_strdup(input);
-	if (*input != '.' && *input != '/')
+	if (*s != '.' && *s != '/')
 		s = swap_n_free(ft_strjoin("./", s), &s);
-	if (input[ft_strlen(input) - 1] != '/')
+	if (s[ft_strlen(s) - 1] != '/')
 		s = swap_n_free(ft_strjoin(s, "/"), &s);
 	return (s);
 }
@@ -42,7 +38,7 @@ void	check_recursion(t_direct *dir)
 				is_type(*(dir->stats), S_IFDIR))
 		{
 			fpath = ft_strjoin(dir->path, dir->name);
-			ft_printf("\n%s\n", fpath);
+			ft_strchr(fpath, ' ') ? ft_printf("\n'%s':\n", fpath) : ft_printf("\n%s\n", fpath);
 			ft_ls(fix_input(fpath), dir->flags);
 			free(fpath);
 			dir = dir->next;
@@ -56,26 +52,31 @@ int		ft_ls(char *path, short flags)
 {
 	t_direct		*d;
 	DIR				*s;
+	struct dirent	*ent;
 
 	d = NULL;
 	s = opendir(path);
-	while (!d)
-		d = new_direct(readdir(s)->d_name, path, flags);
-	while (add_dir(&d, readdir(s)))
-		continue ;
-	if (!(flags & f))
-		flags & t ? t_sort(&d) : sort_dir(&d);
-	else
-		f_sort(&d);
-	fix_size_pad(&d, d->size_pad);
-	fix_userlen(&d, d->userlen);
-	fix_grouplen(&d, d->grouplen);
-	fix_link_pad(&d, d->link_pad);
+	while (!d && (ent = readdir(s)))
+		d = new_direct(ent->d_name, path, flags);
+	if (d)
+	{
+		while (d && add_dir(&d, readdir(s)))
+			continue ;
+		if (!(flags & f))
+			flags & t ? t_sort(&d) : sort_dir(&d);
+		else
+			f_sort(&d);
+		fix_size_pad(&d, d->size_pad);
+		fix_userlen(&d, d->userlen);
+		fix_grouplen(&d, d->grouplen);
+		fix_link_pad(&d, d->link_pad);
+	}
 	print_list(d);
 	if (flags & R)
 		check_recursion(d);
 	closedir(s);
-	del_dir(d);
+	if (d)
+		del_dir(d);
 	free(path);
 	return (1);
 }
