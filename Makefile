@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/21 15:34:50 by dromansk         ###   ########.fr        #
+#    Updated: 2019/02/21 16:22:02 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ reclean: re
 	make clean
 
 test: reclean
-	./$(NAME) -o
+	./$(NAME) -lG /dev/

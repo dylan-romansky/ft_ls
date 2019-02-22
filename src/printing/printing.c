@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 15:37:59 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:21:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	print_info(t_direct *d)
 
 void	print_link(t_direct *d)
 {
-	char			link[BUFF_SIZE + 1];
+	char			link[PATH_MAX + 1];
 	int				ret;
 	char			*path;
 
 	path = ft_strjoin(d->path, d->name);
-	ret = readlink(path, link, BUFF_SIZE);
+	ret = readlink(path, link, PATH_MAX);
 /*	if (ret < 0)
 	{
 		ft_putchar('\n');

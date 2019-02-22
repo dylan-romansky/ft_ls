@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 14:38:20 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:21:40 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-# define BUFF_SIZE 1024
 # ifdef __linux__
 # include "linux.h"
 # endif
