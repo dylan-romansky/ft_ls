@@ -71,10 +71,10 @@ int		ft_ls(char *path, short flags)
 		fix_grouplen(&d, d->grouplen);
 		fix_link_pad(&d, d->link_pad);
 	}
+	closedir(s);
 	print_list(d);
 	if (flags & R)
 		check_recursion(d);
-	closedir(s);
 	if (d)
 		del_dir(d);
 	free(path);
