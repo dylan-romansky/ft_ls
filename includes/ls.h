@@ -40,59 +40,11 @@
 ** u = time of last access, d makes directories plain files
 */
 /*
- add single quote around names with spaces in them
- -goes around entire path
- recursion seems broken
- 1.   If r, the file is readable; if -, it is not readable.
-
- 2.   If w, the file is writable; if -, it is not writable.
-
- 3.   The first of the following that applies:
-
-            S     If in the owner permissions, the file is not exe-
-                  cutable and set-user-ID mode is set.  If in the
-                  group permissions, the file is not executable and
-                  set-group-ID mode is set.
-
-            s     If in the owner permissions, the file is exe-
-                  cutable and set-user-ID mode is set.  If in the
-                  group permissions, the file is executable and set-
-                  group-ID mode is set.
-
-            x     The file is executable or the directory is search-
-                  able.
-
-            -     The file is neither readable, writable, exe-
-                  cutable, nor set-user-ID nor set-group-ID mode,
-                  nor sticky.  (See below.)
-
-      These next two apply only to the third character in the last
-      group (other permissions).
-
-            T     The sticky bit is set (mode 1000), but not execute
-                  or search permission.  (See chmod(1) or
-                  sticky(8).)
-
-            t     The sticky bit is set (mode 1000), and is search-
-                  able or executable.  (See chmod(1) or sticky(8).)
-
-from man 4 tty:
-     TIOCGWINSZ struct winsize *ws
-                 Put the window size information associated with the terminal
-                 in the winsize structure pointed to by ws.  The window size
-                 structure contains the number of rows and columns (and pixels
-                 if appropriate) of the devices attached to the terminal.  It
-                 is set by user software and is the means by which most full-
-                 screen oriented programs determine the screen size.  The
-                 winsize structure is defined in ~ <sys/ioctl.h>.
-
-				 pattern is 2 tab width, hard part is the columns are 
-				 alphabetical. Will need to find a way to math out column
-				 size and number if I'm gonna make this work. Probs will just
-				 skip for now.
-
 other notes:
 			find out how to print extra @ and + and the like for /
+			/etc breaks on my machine and overly large directories take an obscene amount of time
+			trouble entry in /etc:	drwxr-xr-x 2 root          209   4096 Feb 20 21:28 cups
+			/bin also obscenely long
 */
 
 int			ft_ls(char *path, short flags);

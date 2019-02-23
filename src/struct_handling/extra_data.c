@@ -17,7 +17,7 @@ char	*handle_gid(gid_t st_gid)
 	struct group *id;
 
 	id = getgrgid(st_gid);
-	return (ft_strdup(id->gr_name));
+	return (id ? ft_strdup(id->gr_name) : NULL);
 }
 
 char	*handle_uid(uid_t st_uid)
@@ -25,7 +25,7 @@ char	*handle_uid(uid_t st_uid)
 	struct passwd *id;
 
 	id = getpwuid(st_uid);
-	return (ft_strdup(id->pw_name));
+	return (id ? ft_strdup(id->pw_name) : NULL);
 }
 
 void	fix_userlen(t_direct **dir, int size)

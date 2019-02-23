@@ -57,11 +57,11 @@ void	print_info(t_direct *d)
 	print_perm(d->stats, b);
 	ft_printf("  %*d ", d->link_pad, d->stats->st_nlink);
 	if (!(d->flags & g))
-		ft_printf("%-*s", d->userlen, d->user);
+		d->user ? ft_printf("%-*s", d->userlen, d->user) : ft_printf("%*d", d->userlen, d->stats->st_uid);
 	if (!(d->flags & g) && !(d->flags & o))
 		ft_printf("  ");
 	if (!(d->flags & o))
-		ft_printf("%-*s", d->grouplen, d->group);
+		d->group ? ft_printf("%-*s", d->grouplen, d->group) : ft_printf("%*d", d->grouplen, d->stats->st_gid);
 	if (ft_strstr(d->path, "/dev"))
 		print_maj_min(d);
 	else
