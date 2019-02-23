@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:21:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 01:22:22 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 17:36:00 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void		print_cols(t_direct *d, int cols, int size, int len)
 		print_every_i(d, i, len);
 		d = d->next;
 		counter++;
-		if (counter != i)
-			ft_putchar('\n');
+		ft_putchar('\n');
 	}
 }
 
@@ -81,6 +80,8 @@ void		print_col(t_direct *d)
 	{
 		count++;
 		cmp = ft_strlen(d->name);
+		if (ft_strchr(d->name, ' '))
+			cmp += 2;
 		if (len == 16)
 		{
 			len = cmp > len ? 30 : len;

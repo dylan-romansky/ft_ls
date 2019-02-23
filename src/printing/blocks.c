@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 01:03:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 17:33:50 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,10 @@ void	print_name(t_direct *d, int i, int width)
 	int			len;
 
 	if (d->flags & G)
-	{
 		ft_printf("%s", g_filetypes[i].colour);
-		ft_strchr(d->name, ' ') ? ft_printf("'%s'", d->name) : ft_printf("%s", d->name);
+	ft_printf("%s", d->name);
+	if (d->flags & G)
 		ft_printf("{eoc}");
-	}
-	else
-		ft_strchr(d->name, ' ') ? ft_printf("'%s'", d->name) : ft_printf("%s", d->name);
 	len = ft_strlen(d->name);
 	width = width > len ? width - len : 0;
 	while (width--)
