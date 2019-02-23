@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:21:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 17:36:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/22 18:55:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,15 @@ void		print_col(t_direct *d)
 	{
 		count++;
 		cmp = ft_strlen(d->name);
-		if (ft_strchr(d->name, ' '))
-			cmp += 2;
+		ft_printf("name %s\nlen %d\ncmp %d\n", d->name, len, cmp);
 		if (len == 16)
 		{
 			len = cmp > len ? 30 : len;
+			if (cmp > 30)
+				len = cmp + 1;
 		}
 		else
-			len = cmp > len ? cmp : len;
+			len = cmp > len ? cmp + 1 : len;
 		d = d->next;
 	}
 	column_count(start, len, count);
