@@ -80,15 +80,8 @@ void		print_col(t_direct *d)
 	{
 		count++;
 		cmp = ft_strlen(d->name);
-		ft_printf("name %s\nlen %d\ncmp %d\n", d->name, len, cmp);
-		if (len == 16)
-		{
-			len = cmp > len ? 30 : len;
-			if (cmp > 30)
-				len = cmp + 1;
-		}
-		else
-			len = cmp > len ? cmp + 1 : len;
+		len = cmp > 16 ? 30 : len;
+		len = cmp > len ? cmp : len;
 		d = d->next;
 	}
 	column_count(start, len, count);
