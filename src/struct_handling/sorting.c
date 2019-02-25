@@ -99,7 +99,7 @@ void	t_sort(t_direct **list)
 			dir = dir->next ? dir->next : dir;
 		}
 	}
-	f_sort(list);
+//	f_sort(list);
 }
 
 void	sort_dir(t_direct **list)

@@ -76,6 +76,7 @@ void		print_info(t_direct *dir);
 void		print_one(char *file, short flags);
 void		print_maj_min(t_direct *dir);
 void		print_col(t_direct *dir);
+void		print_char(t_direct *d, int i);
 void		get_blocks(t_direct *dir);
 int			is_sorted(char *s1, char *s2);
 void		sort_dir(t_direct **list);

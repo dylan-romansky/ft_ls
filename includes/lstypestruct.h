@@ -14,24 +14,28 @@
 # define LSTYPESTRUCT_H
 # include "lstructs.h"
 
+/*
+**confirm whether an executable is always red regardless of who can execute
+*/
+
 t_filetypes g_filetypes[] =
 {
-	{S_IFIFO, 'p', "\033[0;33m]"},
-	{S_IFCHR, 'c', "\033[0;34;43m"},
-	{S_IFDIR, 'd', "\033[0;34m"},
-	{S_IFBLK, 'b', "\033[0;34;46m"},
-	{S_IFREG, '-', "\033[0m"},
-	{S_IFLNK, 'l', "\033[0;35m"},
-	{S_IFSOCK, 's', "\033[0;32m"},
-	{S_IFWHT, '-', "\033[0m"},
-	{S_ISUID, '-', "\033[0;30;41m"},
-	{S_ISGID, '-', "\033[0;30;46m"},
-	{S_ISVTX, '-', "\033[0m"},
-	{S_IRUSR, '-', "\033[0m"},
-	{S_IWUSR, '-', "\033[0m"},
-	{S_IXUSR, '-', "\033[0;31m"},
-	{S_IWOTH, '-', "\033[0;30;42m"},
-	{S_IWOTH, '-', "\033[0;30;43m"}
+	{S_IFIFO, 'p', "\033[0;33m]", '|'},
+	{S_IFCHR, 'c', "\033[0;34;43m", '\0'},
+	{S_IFDIR, 'd', "\033[0;34m", '/'},
+	{S_IFBLK, 'b', "\033[0;34;46m", '\0'},
+	{S_IFREG, '-', "\033[0m", '\0'},
+	{S_IFLNK, 'l', "\033[0;35m", '@'},
+	{S_IFSOCK, 's', "\033[0;32m", '='},
+	{S_IFWHT, '-', "\033[0m", '%'},
+	{S_ISUID, '-', "\033[0;30;41m", '\0'},
+	{S_ISGID, '-', "\033[0;30;46m", '\0'},
+	{S_ISVTX, '-', "\033[0m", '\0'},
+	{S_IRUSR, '-', "\033[0m", '\0'},
+	{S_IWUSR, '-', "\033[0m", '\0'},
+	{S_IXUSR, '-', "\033[0;31m", '*'},
+	{S_IWOTH, '-', "\033[0;30;42m", '\0'},
+	{S_IWOTH, '-', "\033[0;30;43m", '\0'}
 };
 
 /*

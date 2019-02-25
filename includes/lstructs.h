@@ -46,6 +46,7 @@ struct	s_filetypes
 	int		type;
 	char	c;
 	char	*colour;
+	char	c2;
 };
 
 #endif

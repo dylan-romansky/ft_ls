@@ -59,9 +59,9 @@ int			get_flag(char *s)
 		{
 			if (*s == '1')
 				f = get_one(f);
-			while (i <= 12 && g_ftypes[i].type != *s)
+			while (i <= 13 && g_ftypes[i].type != *s)
 				i++;
-			if (i <= 12)
+			if (i <= 13)
 				f |= g_ftypes[i].flag;
 			else
 				return (flags_error(*s));

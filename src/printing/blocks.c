@@ -29,13 +29,31 @@ void	get_blocks(t_direct *dir)
 	ft_printf("total %d\n", blocks);
 }
 
-void	print_one(char *file, short flags)
+void	print_char(t_direct *d, int i)
 {
-	t_direct	*ffile;
+	struct stat	link;
+	char		*path;
+	char		lpath[PATH_MAX + 1];
+	int			t;
 
-	ffile = new_direct(file, "", flags);
-	print_list(ffile);
-	free(ffile);
+	t = i;
+	path = NULL;
+	if (i == 5)
+	{
+		path = ft_strjoin(d->path, d->name);
+		t = readlink(path, lpath, PATH_MAX);
+		free(path);
+		lpath[t] = '\0';
+		path = ft_strjoin(d->path, lpath);
+		stat(path, &link);
+		free(path);
+		t = 0;
+		while (t < 15 && !is_type(link, g_filetypes[t].type))
+			t++;
+		if (t == 4 && link.st_mode & S_IXUSR)
+			t = 13;
+	}
+	t == i ? ft_printf("%c", g_filetypes[i].c2) : ft_printf("%c", g_filetypes[t].c2);
 }
 
 void	print_name(t_direct *d, int i, int width)
@@ -49,10 +67,12 @@ void	print_name(t_direct *d, int i, int width)
 		ft_printf("{eoc}");
 	len = ft_strlen(d->name);
 	width = width > len ? width - len : 0;
-	while (width--)
-		ft_putchar(' ');
 	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
+	if (d->flags & F)
+		print_char(d, i);
+	while (width--)
+		ft_putchar(' ');
 }
 
 void	print_type(t_direct *d, int width)
@@ -60,7 +80,7 @@ void	print_type(t_direct *d, int width)
 	int			i;
 
 	i = 0;
-	while (i <= 15 && !is_type(*d->stats, g_filetypes[i].type))
+	while (i < 15 && !is_type(*d->stats, g_filetypes[i].type))
 		i++;
 	if (i == 4 && d->stats->st_mode & S_IXUSR)
 		i = 13;
