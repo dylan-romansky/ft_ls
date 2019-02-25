@@ -42,4 +42,5 @@ reclean: re
 	make clean
 
 test: reclean
-	./$(NAME)
+	./$(NAME) -H penis
+	/usr/bin/ls -H penis

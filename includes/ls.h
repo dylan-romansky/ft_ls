@@ -40,12 +40,12 @@
 ** u = time of last access, d makes directories plain files
 */
 /*
-other notes:
-			find out how to print extra @ and + and the like for /
-			/etc breaks on my machine and overly large directories take an obscene amount of time
-			/bin also obscenely long
-			confirm behaviour of multiple sort flags
-			confirm behaviour of t and u with . and ..
+**other notes:
+**			find out how to print extra @ and + and the like for /
+**			/etc breaks on my machine and overly large directories take an obscene amount of time
+**			/bin also obscenely long
+**			confirm behaviour of multiple sort flags
+**			confirm behaviour of t and u with . and ..
 */
 
 int			ft_ls(char *path, short flags);

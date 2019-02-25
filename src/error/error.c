@@ -21,7 +21,7 @@ void	errorprint(char *path, int errnum)
 int		flags_error(char e)
 {
 	ft_dprintf(2, "ft_ls: illegal option --%c\n", e);
-	ft_dprintf(2, "usage: ft_ls [-AFGRadfglortu1] [file ...]\n");
+	ft_dprintf(2, "usage: ft_ls [-AFGHRadfglortu1] [file ...]\n");
 	return (-1);
 }
 
@@ -41,6 +41,8 @@ int		test_input(char *input, short flags)
 		errno = 0;
 		return (1);
 	}
+	if (flags & H)
+		return (0);
 	if (flags & d || ((flags & l && is_type(ltest, S_IFLNK) &&
 			(input[ft_strlen(input) - 1] != '/' || (*input == '\'' &&
 			input[ft_strlen(input) - 2] != '/'))) || !is_type(test, S_IFDIR)))
