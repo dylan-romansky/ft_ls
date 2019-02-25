@@ -42,4 +42,5 @@ reclean: re
 	make clean
 
 test: reclean
-	./$(NAME)
+	./$(NAME) -lua
+	./$(NAME) -lta

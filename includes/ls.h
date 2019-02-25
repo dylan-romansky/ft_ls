@@ -80,8 +80,8 @@ int			is_sorted(char *s1, char *s2);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);
 void		dir_swap(t_direct **current);
-void		t_sort(t_direct **list, short flags);
-void		u_sort(t_direct **list, short flags);
+void		t_sort(t_direct **list);
+void		u_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 

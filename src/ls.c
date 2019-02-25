@@ -53,11 +53,12 @@ void	sorting(t_direct **d, short flags)
 {
 	if (!(flags & f))
 	{
-		sort_dir(d);
 		if (flags & t)
-			t_sort(d, flags);
+			t_sort(d);
 		else if (flags & u)
-			u_sort(d, flags);
+			u_sort(d);
+		else
+			sort_dir(d);
 	}
 	fix_size_pad(d, (*d)->size_pad);
 	fix_userlen(d, (*d)->userlen);
