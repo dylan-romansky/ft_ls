@@ -43,8 +43,8 @@
 other notes:
 			find out how to print extra @ and + and the like for /
 			/etc breaks on my machine and overly large directories take an obscene amount of time
-			trouble entry in /etc:	drwxr-xr-x 2 root          209   4096 Feb 20 21:28 cups
 			/bin also obscenely long
+			confirm behaviour of multiple sort flags
 */
 
 int			ft_ls(char *path, short flags);

@@ -27,7 +27,8 @@ t_ftypes g_ftypes[] =
 	{'f', f + a},
 	{'G', G},
 	{'o', o + l},
-	{'A', A + a}
+	{'A', A + a},
+	{'d', d}
 };
 
 /*
