@@ -29,7 +29,7 @@ void	check_recursion(t_direct *dir)
 {
 	char	*fpath;
 
-	if (dir->flags & a)
+	if (dir && dir->flags & a)
 	{
 		dir = dir->next;
 		dir = dir->next;
