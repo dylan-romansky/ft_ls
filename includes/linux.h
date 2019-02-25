@@ -13,6 +13,7 @@
 #ifndef ARCH_H
 # define ARCH_H
 # define st_mtimespec st_mtim
+# define st_atimespec st_atim
 # define S_IFWHT 0160000
 # include <sys/sysmacros.h>
 #endif

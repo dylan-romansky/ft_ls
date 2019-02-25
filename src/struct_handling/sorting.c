@@ -25,13 +25,13 @@ int		is_sorted(char *s1, char *s2)
 	return (0);
 }
 
-int		t_is_sorted(char *d1, char *d2)
+int		t_is_sorted(t_direct *d1, t_direct *d2)
 {
 	struct stat	s1;
 	struct stat	s2;
 
-	stat(d1, &s1);
-	stat(d2, &s2);
+	s1 = *d1->stats;
+	s2 = *d2->stats;
 	if (s1.st_mtimespec.tv_sec < s2.st_mtimespec.tv_sec)
 		return (t);
 	else if (s1.st_mtimespec.tv_sec == s2.st_mtimespec.tv_sec)
@@ -39,7 +39,7 @@ int		t_is_sorted(char *d1, char *d2)
 		if (s1.st_mtimespec.tv_nsec < s2.st_mtimespec.tv_nsec)
 			return (t);
 		else if (s1.st_mtimespec.tv_nsec == s2.st_mtimespec.tv_nsec)
-			return (is_sorted(d1, d2) ? t : 0);
+			return (is_sorted(d1->name, d2->name) ? t : 0);
 	}
 	return (0);
 }
@@ -82,7 +82,7 @@ void	t_sort(t_direct **list)
 	while (dir->next)
 	{
 		if ((t & dir->flags)
-				== t_is_sorted(dir->name, dir->next->name))
+				== t_is_sorted(dir, dir->next))
 		{
 			if (dir != *list)
 				last->next = dir->next;

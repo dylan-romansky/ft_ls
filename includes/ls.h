@@ -76,10 +76,12 @@ void		print_one(char *file, short flags);
 void		print_maj_min(t_direct *dir);
 void		print_col(t_direct *dir);
 void		get_blocks(t_direct *dir);
+int			is_sorted(char *s1, char *s2);
 void		sort_dir(t_direct **list);
 void		f_sort(t_direct **list);
 void		dir_swap(t_direct **current);
 void		t_sort(t_direct **list);
+void		u_sort(t_direct **list);
 
 int			is_type(struct stat stats, unsigned int type);
 

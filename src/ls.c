@@ -48,6 +48,22 @@ void	check_recursion(t_direct *dir)
 	}
 }
 
+void	sorting(t_direct **d, short flags)
+{
+	if (!(flags & f))
+	{
+		sort_dir(d);
+		if (flags & t)
+			t_sort(d);
+		else if (flags & u)
+			u_sort(d);
+	}
+	fix_size_pad(d, (*d)->size_pad);
+	fix_userlen(d, (*d)->userlen);
+	fix_grouplen(d, (*d)->grouplen);
+	fix_link_pad(d, (*d)->link_pad);
+}
+
 int		ft_ls(char *path, short flags)
 {
 	t_direct		*d;
@@ -62,14 +78,7 @@ int		ft_ls(char *path, short flags)
 	{
 		while (d && add_dir(&d, readdir(s)))
 			continue ;
-		if (!(flags & f))
-			flags & t ? t_sort(&d) : sort_dir(&d);
-		else
-			f_sort(&d);
-		fix_size_pad(&d, d->size_pad);
-		fix_userlen(&d, d->userlen);
-		fix_grouplen(&d, d->grouplen);
-		fix_link_pad(&d, d->link_pad);
+		sorting(&d, flags);
 	}
 	closedir(s);
 	print_list(d);
