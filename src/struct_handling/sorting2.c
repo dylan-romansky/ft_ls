@@ -32,13 +32,18 @@ int		u_is_sorted(t_direct *d1, t_direct *d2)
 	return (0);
 }
 
-void	u_sort(t_direct **list)
+void	u_sort(t_direct **list, short flags)
 {
 	t_direct	*dir;
 	t_direct	*last;
 
 	dir = *list;
 	last = NULL;
+	if (flags & a)
+	{
+		dir = dir->next;
+		dir = dir->next;
+	}
 	while (dir->next)
 	{
 		if ((r & dir->flags) ==

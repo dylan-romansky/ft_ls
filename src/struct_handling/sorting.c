@@ -72,13 +72,18 @@ void	f_sort(t_direct **list)
 	}
 }
 
-void	t_sort(t_direct **list)
+void	t_sort(t_direct **list, short flags)
 {
 	t_direct	*dir;
 	t_direct	*last;
 
 	dir = *list;
 	last = NULL;
+	if (flags & a)
+	{
+		dir = dir->next;
+		dir = dir->next;
+	}
 	while (dir->next)
 	{
 		if ((t & dir->flags)

@@ -29,13 +29,14 @@ void	check_recursion(t_direct *dir)
 {
 	char	*fpath;
 
+	if (dir->flags & a)
+	{
+		dir = dir->next;
+		dir = dir->next;
+	}
 	while (dir)
 	{
-		if (!(dir->flags & a) && *dir->name == '.')
-			dir = dir->next;
-		else if (ft_strcmp(dir->name, ".") &&
-				ft_strcmp(dir->name, "..") &&
-				is_type(*(dir->stats), S_IFDIR))
+		if (is_type(*(dir->stats), S_IFDIR))
 		{
 			fpath = ft_strjoin(dir->path, dir->name);
 			ft_printf("\n%s\n", fpath);
@@ -54,9 +55,9 @@ void	sorting(t_direct **d, short flags)
 	{
 		sort_dir(d);
 		if (flags & t)
-			t_sort(d);
+			t_sort(d, flags);
 		else if (flags & u)
-			u_sort(d);
+			u_sort(d, flags);
 	}
 	fix_size_pad(d, (*d)->size_pad);
 	fix_userlen(d, (*d)->userlen);
