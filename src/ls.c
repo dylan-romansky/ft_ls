@@ -25,28 +25,26 @@ char	*fix_input(char *input)
 	return (s);
 }
 
-void	check_recursion(t_direct *dir)
+void	check_recursion(t_rex **rec)
 {
-	char	*fpath;
+	char		*fpath;
+	t_rex		*curr;
+	t_direct	*dir;
 
-	if (dir && dir->flags & a)
+	curr = *rec;
+	if (!curr || !curr->dir)
+		return ;
+	while (curr && curr->dir)
 	{
-		dir = dir->next;
-		dir = dir->next;
+		dir = curr->dir;
+		fpath = ft_strjoin(dir->path, dir->name);
+		ft_printf("\n%s\n", fpath);
+		ft_ls(fix_input(fpath), dir->flags);
+		free(fpath);
+		curr = curr->next;
 	}
-	while (dir)
-	{
-		if (is_type(*(dir->stats), S_IFDIR))
-		{
-			fpath = ft_strjoin(dir->path, dir->name);
-			ft_printf("\n%s\n", fpath);
-			ft_ls(fix_input(fpath), dir->flags);
-			free(fpath);
-			dir = dir->next;
-		}
-		else
-			dir = dir->next;
-	}
+	if (rec && *rec)
+		del_rex(*rec);
 }
 
 void	sorting(t_direct **d, short flags)
@@ -74,7 +72,7 @@ int		ft_ls(char *path, short flags)
 
 	d = NULL;
 	s = opendir(path);
-	while (!d && (ent = readdir(s)))
+	while (!d && s && (ent = readdir(s)))
 		d = new_direct(ent->d_name, path, flags);
 	if (d)
 	{
@@ -83,11 +81,11 @@ int		ft_ls(char *path, short flags)
 		sorting(&d, flags);
 	}
 	closedir(s);
-	print_list(d);
-	if (flags & R)
-		check_recursion(d);
 	if (d)
+	{
+		flags & 1 || flags & l || flags & o || d->flags & g ? print_list(d) : print_col(d);
 		del_dir(d);
+	}
 	free(path);
 	return (1);
 }

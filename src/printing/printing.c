@@ -84,21 +84,22 @@ void	print_link(t_direct *d)
 
 void	print_list(t_direct *d)
 {
+	t_rex	*recs;
+
+	recs = NULL;
 	if (!d)
-	{
 		return ;
-	}
-	if (!(d->flags & 1) && !(d->flags & l) && !(d->flags & o) && !(d->flags & g))
-	{
-		print_col(d);
-		return ;
-	}
 	if (d->flags & l || d->flags & g)
 		get_blocks(d);
+	if (d->flags & R)
+		recs = new_rex(NULL);
 	while (d)
 	{
 		print_type(d, 1);
 		ft_putchar('\n');
+		if (d->flags & R && !ft_strequ(d->name, ".") && !ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
+			add_rex(d, &recs);
 		d = d->next;
 	}
+	check_recursion(&recs);
 }

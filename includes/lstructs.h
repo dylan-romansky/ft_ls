@@ -17,6 +17,7 @@
 typedef struct s_direct		t_direct;
 typedef struct s_ftypes		t_ftypes;
 typedef struct s_filetypes	t_filetypes;
+typedef struct s_rex		t_rex;
 
 struct	s_direct
 {
@@ -47,6 +48,12 @@ struct	s_filetypes
 	char	c;
 	char	*colour;
 	char	c2;
+};
+
+struct	s_rex
+{
+	t_direct	*dir;
+	t_rex		*next;
 };
 
 #endif

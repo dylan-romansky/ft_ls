@@ -42,8 +42,7 @@
 /*
 **other notes:
 **			find out how to print extra @ and + and the like for /
-**			/etc breaks on my machine and overly large directories take an obscene amount of time
-**			/bin also obscenely long
+**			/bin obscenely long
 **			confirm behaviour of multiple sort flags
 **			confirm behaviour of t and u with . and ..
 */
@@ -62,9 +61,11 @@ void		fix_size_pad(t_direct **dir, int size);
 void		fix_userlen(t_direct **dir, int size);
 void		fix_grouplen(t_direct **dir, int size);
 void		fix_link_pad(t_direct **dir, int size);
+t_rex		*new_rex(t_direct *d);
+void		add_rex(t_direct *d, t_rex **rec);
+void		del_rex(t_rex *rec);
 
-int			is_end(t_direct *dir);
-int			will_fit(int extra, t_direct *d, int columns);
+void		check_recursion(t_rex **rec);
 
 char		*handle_gid(gid_t st_gid);
 char		*handle_uid(uid_t st_uid);

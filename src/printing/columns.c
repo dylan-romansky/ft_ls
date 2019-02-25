@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ls.h"
+#include "lsenums.h"
 
 /*
 ** not perfect but Imma do either 30 width or longest name plus 2
@@ -73,16 +74,26 @@ void		print_col(t_direct *d)
 	int			len;
 	int			cmp;
 	int			count;
+	t_rex		*recs;
+	
+	if (!d)
+		return ;
 	len = 16;
 	count = 0;
 	start = d;
+	recs = NULL;
+	if (d->flags & R)
+		recs = new_rex(NULL);
 	while (d)
 	{
 		count++;
 		cmp = ft_strlen(d->name);
 		len = cmp > 16 ? 30 : len;
 		len = cmp > len ? cmp : len;
+		if  (d->flags & R && !ft_strequ(d->name, ".") && !ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
+			add_rex(d, &recs);
 		d = d->next;
 	}
 	column_count(start, len, count);
+	check_recursion(&recs);
 }
