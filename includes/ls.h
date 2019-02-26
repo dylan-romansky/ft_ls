@@ -42,7 +42,7 @@
 /*
 **other notes:
 **			find out how to print extra @ and + and the like for /
-**			/bin obscenely long
+**			F flag currently broken. test in /
 **			confirm behaviour of multiple sort flags
 **			confirm behaviour of t and u with . and ..
 */
