@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:21:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/25 23:51:05 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:32:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		column_count(t_direct *d, int len, int count)
 	struct winsize	ws;
 	int				size;
 	int				cols;
-	
+
 	cols = 1;
 	ioctl(1, TIOCGWINSZ, &ws);
 	size = ws.ws_col;
@@ -68,14 +68,21 @@ void		column_count(t_direct *d, int len, int count)
 	print_cols(d, cols, count, len);
 }
 
+int			len_check_lmao(int len, int cmp)
+{
+	len = cmp >= 8 ? 16 : len;
+	len = cmp >= 16 ? 32 : len;
+	len = cmp >= len ? cmp + 8 : len;
+	return (len);
+}
+
 void		print_col(t_direct *d)
 {
 	t_direct	*start;
 	int			len;
-	int			cmp;
 	int			count;
 	t_rex		*recs;
-	
+
 	if (!d)
 		return ;
 	len = 8;
@@ -87,11 +94,9 @@ void		print_col(t_direct *d)
 	while (d)
 	{
 		count++;
-		cmp = ft_strlen(d->name);
-		len = cmp > 8 ? 16 : len;
-		len = cmp > 16 ? 32 : len;
-		len = cmp > len ? cmp : len;
-		if  (d->flags & R && !ft_strequ(d->name, ".") && !ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
+		len = len_check_lmao(len, ft_strlen(d->name));
+		if (d->flags & R && !ft_strequ(d->name, ".") &&
+				!ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
 			add_rex(d, &recs);
 		d = d->next;
 	}

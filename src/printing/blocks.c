@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 17:33:50 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:07:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	print_char(t_direct *d, int i)
 		if (t == 4 && link.st_mode & S_IXUSR)
 			t = 13;
 	}
-	t == i ? ft_printf("%c", g_filetypes[i].c2) : ft_printf("%c", g_filetypes[t].c2);
+	t == i ? ft_printf("%c", g_filetypes[i].c2) :
+		ft_printf("%c", g_filetypes[t].c2);
 }
 
 void	print_name(t_direct *d, int i, int width)
@@ -97,7 +98,8 @@ void	print_type(t_direct *d, int width)
 void	print_maj_min(t_direct *d)
 {
 	if (is_type(*d->stats, S_IFCHR) || is_type(*d->stats, S_IFBLK))
-		ft_printf("  %3d, %3d", major(d->stats->st_rdev), minor(d->stats->st_rdev));
+		ft_printf("  %3d, %3d", major(d->stats->st_rdev),
+				minor(d->stats->st_rdev));
 	else
 		ft_printf("  %8ld", d->size);
 }

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/14 16:22:29 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:09:26 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	t_sort(t_direct **list)
 			dir = dir->next ? dir->next : dir;
 		}
 	}
-//	f_sort(list);
 }
 
 void	sort_dir(t_direct **list)

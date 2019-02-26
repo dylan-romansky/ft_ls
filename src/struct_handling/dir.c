@@ -6,22 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 00:46:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:19:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
-
-int			num_len(long long n)
-{
-	int				i;
-
-	i = 1;
-	while (n /= 10)
-		i++;
-	return (i);
-}
 
 void		fix_size_pad(t_direct **dir, int size)
 {
@@ -53,15 +43,27 @@ int			add_dir(t_direct **dir, struct dirent *ent)
 	return (1);
 }
 
+void		d_fill(t_direct **dir)
+{
+	t_direct		*new;
+	struct stat		*stats;
+
+	new = *dir;
+	stats = new->stats;
+	new->userlen = ft_strlen(new->user);
+	new->grouplen = ft_strlen(new->group);
+	new->size_pad = number_length(new->size);
+	new->link_pad = number_length(stats->st_nlink);
+}
+
 t_direct	*new_direct(char *name, char *path, short flags)
 {
 	t_direct		*new;
 	struct stat		*stats;
 	char			*fpath;
 
-	if (*name == '.' && !(flags & a))
-		return (NULL);
-	if ((!ft_strcmp(name, ".") || !ft_strcmp(name, "..")) && flags & A)
+	if ((*name == '.' && !(flags & a)) || ((!ft_strcmp(name, ".")
+					|| !ft_strcmp(name, "..")) && flags & A))
 		return (NULL);
 	fpath = (*name == '.' && (name[1] == '.' || name[1] == '/')) ?
 			ft_strdup(name) : ft_strjoin(path, name);
@@ -72,17 +74,13 @@ t_direct	*new_direct(char *name, char *path, short flags)
 		return (NULL);
 	new->name = ft_strdup(name);
 	new->user = handle_uid(stats->st_uid);
-	new->userlen = ft_strlen(new->user);
 	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
-	new->grouplen = ft_strlen(new->group);
-	new->size_pad = num_len(new->size);
-	new->link_pad = num_len(stats->st_nlink);
 	new->stats = stats;
 	new->flags = flags;
 	new->path = path;
-	new->sub = NULL;
 	new->next = NULL;
+	d_fill(&new);
 	return (new);
 }
 

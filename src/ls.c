@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/25 23:37:50 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:19:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int		ft_ls(char *path, short flags)
 	closedir(s);
 	if (d)
 	{
-		flags & 1 || flags & l || flags & o || d->flags & g ? print_list(d) : print_col(d);
+		flags & 1 || flags & l || flags & o || d->flags & g
+			? print_list(d) : print_col(d);
 		del_dir(d);
 	}
 	free(path);

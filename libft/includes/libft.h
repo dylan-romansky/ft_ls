@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:47:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:19:04 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:17:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ char				*ft_strjoin_len(char const *s1, char const *s2, size_t len1,
 		size_t len2);
 int					ft_isupper(char c);
 int					ft_islower(char c);
+int					number_length(long long n);
 
 #endif

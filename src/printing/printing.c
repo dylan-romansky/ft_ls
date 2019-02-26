@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 00:48:25 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:06:06 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_perm(struct stat *info, int b)
 			if (!(b & info->st_mode))
 				ft_printf("S");
 			else if ((b == 64 && info->st_mode & S_ISUID)
-				   	|| (b == 8 && info->st_mode & S_ISGID))
+					|| (b == 8 && info->st_mode & S_ISGID))
 				ft_printf("s");
 			else if (b == 1 && info->st_mode & S_ISVTX)
 				b & info->st_mode ? ft_printf("t") : ft_printf("T");
@@ -57,11 +57,13 @@ void	print_info(t_direct *d)
 	print_perm(d->stats, b);
 	ft_printf("  %*d ", d->link_pad, d->stats->st_nlink);
 	if (!(d->flags & g))
-		d->user ? ft_printf("%-*s", d->userlen, d->user) : ft_printf("%*d", d->userlen, d->stats->st_uid);
+		d->user ? ft_printf("%-*s", d->userlen, d->user) :
+			ft_printf("%*d", d->userlen, d->stats->st_uid);
 	if (!(d->flags & g) && !(d->flags & o))
 		ft_printf("  ");
 	if (!(d->flags & o))
-		d->group ? ft_printf("%-*s", d->grouplen, d->group) : ft_printf("%*d", d->grouplen, d->stats->st_gid);
+		d->group ? ft_printf("%-*s", d->grouplen, d->group) :
+			ft_printf("%*d", d->grouplen, d->stats->st_gid);
 	if (ft_strstr(d->path, "/dev"))
 		print_maj_min(d);
 	else
@@ -97,7 +99,8 @@ void	print_list(t_direct *d)
 	{
 		print_type(d, 1);
 		ft_putchar('\n');
-		if (d->flags & R && !ft_strequ(d->name, ".") && !ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
+		if (d->flags & R && !ft_strequ(d->name, ".") &&
+				!ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
 			add_rex(d, &recs);
 		d = d->next;
 	}

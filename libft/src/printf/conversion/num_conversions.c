@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/13 21:29:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 00:23:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	numlen(intmax_t n, int base)
 	return (i);
 }
 
-char	*ft_imaxtoa_base(intmax_t n, int base)
+char	*ft_imaxtoa_base(long long n, int base)
 {
 	char		*st;
 	intmax_t	v;
@@ -58,7 +58,7 @@ int		unumlen(uintmax_t value, unsigned int base)
 	return (i);
 }
 
-char	*ft_uimaxtoa_base(intmax_t n, int base)
+char	*ft_uimaxtoa_base(long long n, int base)
 {
 	char		*s;
 	uintmax_t	v;
