@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 22:21:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 18:55:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:51:05 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		print_col(t_direct *d)
 	
 	if (!d)
 		return ;
-	len = 16;
+	len = 8;
 	count = 0;
 	start = d;
 	recs = NULL;
@@ -88,7 +88,8 @@ void		print_col(t_direct *d)
 	{
 		count++;
 		cmp = ft_strlen(d->name);
-		len = cmp > 16 ? 30 : len;
+		len = cmp > 8 ? 16 : len;
+		len = cmp > 16 ? 32 : len;
 		len = cmp > len ? cmp : len;
 		if  (d->flags & R && !ft_strequ(d->name, ".") && !ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
 			add_rex(d, &recs);
