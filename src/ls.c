@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 17:35:29 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:35:03 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	sorting(t_direct **d, short flags)
 		else
 			sort_dir(d);
 	}
+	else
+		f_sort(d);
 	fix_size_pad(d, (*d)->size_pad);
 	fix_userlen(d, (*d)->userlen);
 	fix_grouplen(d, (*d)->grouplen);
