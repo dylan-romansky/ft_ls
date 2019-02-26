@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/25 23:35:03 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:37:50 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	sorting(t_direct **d, short flags)
 	{
 		if (flags & t)
 			t_sort(d);
-		else if (flags & u)
+		if (flags & u)
 			u_sort(d);
 		else
 			sort_dir(d);
