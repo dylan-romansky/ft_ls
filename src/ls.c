@@ -36,7 +36,6 @@ void	check_recursion(t_rex **rec)
 		return ;
 	while (curr && curr->dir)
 	{
-		printf("%s\n", ft_strjoin(dir->path, dir->name));
 		dir = curr->dir;
 		fpath = ft_strjoin(dir->path, dir->name);
 		ft_printf("\n%s\n", fpath);
