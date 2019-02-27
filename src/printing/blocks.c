@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 18:19:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:31:15 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ void	print_type(t_direct *d, int width)
 		i++;
 	if (i == 5 && d->stats->st_mode & S_IXUSR)
 		i = 13;
+	if (i == 13)
+	{
+		if (d->stats->st_mode & S_ISUID)
+			i = 8;
+		else if (d->stats->st_mode & S_ISGID)
+			i = 9;
+	}
 	if (d->flags & l || d->flags & g)
 	{
 		ft_printf("%c", g_filetypes[i].c);
