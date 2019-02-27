@@ -6,14 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 17:50:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:58:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
 
-char	*fix_input(char *input)
+char		*fix_input(char *input)
 {
 	char	*s;
 
@@ -25,7 +25,7 @@ char	*fix_input(char *input)
 	return (s);
 }
 
-void	check_recursion(t_rex **rec)
+void		check_recursion(t_rex **rec)
 {
 	char		*fpath;
 	t_rex		*curr;
@@ -45,37 +45,13 @@ void	check_recursion(t_rex **rec)
 	}
 }
 
-void	sorting(t_direct **d, short flags)
+t_direct	*read_dirs(char *path, DIR *s, short flags)
 {
-	if (!(flags & f))
-	{
-		if (flags & t)
-			t_sort(d);
-		if (flags & u)
-			u_sort(d);
-		else
-			sort_dir(d);
-	}
-	else
-		f_sort(d);
-	fix_size_pad(d, (*d)->size_pad);
-	fix_userlen(d, (*d)->userlen);
-	fix_grouplen(d, (*d)->grouplen);
-	fix_link_pad(d, (*d)->link_pad);
-}
-
-int		ft_ls(char *path, short flags)
-{
-	t_direct		*d;
-	DIR				*s;
 	struct dirent	*ent;
+	t_direct		*d;
 
+	ent = NULL;
 	d = NULL;
-	if (!(s = opendir(path)) && errno)
-	{
-		free(path);
-		return (errno);
-	}
 	while (!d && s && (ent = readdir(s)))
 		d = new_direct(ent->d_name, path, flags);
 	if (d)
@@ -84,6 +60,21 @@ int		ft_ls(char *path, short flags)
 			continue ;
 		sorting(&d, flags);
 	}
+	return (d);
+}
+
+int			ft_ls(char *path, short flags)
+{
+	t_direct		*d;
+	DIR				*s;
+
+	if (!(s = opendir(path)) && errno)
+	{
+		errorprint(path, errno);
+		free(path);
+		return (errno);
+	}
+	d = read_dirs(path, s, flags);
 	closedir(s);
 	if (d)
 	{
@@ -95,7 +86,7 @@ int		ft_ls(char *path, short flags)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	char	**path;
 	short	flags;

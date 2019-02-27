@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 17:15:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:51:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@
 
 /*
 **other notes:
-**			find out how to print extra @ and + and the like for /
-**			F flag currently broken. test in /
-**			confirm behaviour of multiple sort flags
-**			confirm behaviour of t and u with . and ..
 */
 
 int			ft_ls(char *path, short flags);
@@ -80,6 +76,7 @@ void		f_sort(t_direct **list);
 void		dir_swap(t_direct **current);
 void		t_sort(t_direct **list);
 void		u_sort(t_direct **list);
+void		sorting(t_direct **d, short flags);
 
 int			is_type(struct stat stats, unsigned int type);
 

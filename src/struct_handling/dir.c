@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 17:28:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:48:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void		d_fill(t_direct **dir)
 
 	new = *dir;
 	stats = new->stats;
+	new->user = handle_uid(stats->st_uid);
+	new->group = handle_gid(stats->st_gid);
 	new->userlen = ft_strlen(new->user);
 	new->grouplen = ft_strlen(new->group);
 	new->size_pad = number_length(new->size);
@@ -75,8 +77,6 @@ t_direct	*new_direct(char *name, char *path, short flags)
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->name = ft_strdup(name);
-	new->user = handle_uid(stats->st_uid);
-	new->group = handle_gid(stats->st_gid);
 	new->size = stats->st_size;
 	new->stats = stats;
 	new->flags = flags;
