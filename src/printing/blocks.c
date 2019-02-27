@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 16:32:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:19:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	print_name(t_direct *d, int i, int width)
 		ft_printf("{eoc}");
 	len = ft_strlen(d->name);
 	width = width > len ? width - len : 0;
+	i = (i == 14 || i == 15) ? 1 : i;
 	if (d->flags & F)
 		print_char(d, i);
 	else if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
@@ -80,7 +81,7 @@ void	print_type(t_direct *d, int width)
 		ft_printf("%c", g_filetypes[i].c);
 		print_info(d);
 	}
-	if (i == 7 && d->stats->st_mode & S_IWOTH)
+	if (i == 1 && d->stats->st_mode & S_IWOTH)
 		i = d->stats->st_mode & S_ISVTX ? 14 : 15;
 	print_name(d, i, width);
 }
