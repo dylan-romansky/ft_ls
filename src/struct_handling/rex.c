@@ -44,7 +44,8 @@ void	del_rex(t_rex *rec)
 	t_rex	*del;
 
 	del = rec;
-	if (del->next)
+	if (del && del->next)
 		del_rex(del->next);
-	free(del);
+	if (del)
+		free(del);
 }

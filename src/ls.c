@@ -122,6 +122,5 @@ int		main(int ac, char **av)
 			ft_putchar('\n');
 	}
 	del_path(path);
-	while (1);
 	return (errno);
 }
