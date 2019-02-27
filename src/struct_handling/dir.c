@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:19:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 00:19:20 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:28:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ t_direct	*new_direct(char *name, char *path, short flags)
 	if ((*name == '.' && !(flags & a)) || ((!ft_strcmp(name, ".")
 					|| !ft_strcmp(name, "..")) && flags & A))
 		return (NULL);
+	fpath = fix_input(path);
 	fpath = (*name == '.' && (name[1] == '.' || name[1] == '/')) ?
-			ft_strdup(name) : ft_strjoin(path, name);
+			swap_n_free(ft_strdup(name), &fpath) :
+			swap_n_free(ft_strjoin(fpath, name), &fpath);
 	stats = (struct stat *)malloc(sizeof(struct stat));
 	lstat(fpath, stats);
 	free(fpath);

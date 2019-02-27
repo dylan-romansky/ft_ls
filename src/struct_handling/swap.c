@@ -6,13 +6,13 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:24:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/22 00:43:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 16:59:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 
-void	dir_swap(t_direct **current)
+void		dir_swap(t_direct **current)
 {
 	t_direct	*tmp;
 

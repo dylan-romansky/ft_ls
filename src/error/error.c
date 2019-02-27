@@ -6,16 +6,17 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:59:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 23:20:06 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 16:58:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
 
-void	errorprint(char *path, int errnum)
+int		errorprint(char *path, int errnum)
 {
 	ft_dprintf(2, "ft_ls: %s: %s\n", path, strerror(errnum));
+	return (errnum);
 }
 
 int		flags_error(char e)

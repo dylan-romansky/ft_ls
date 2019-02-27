@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 00:19:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:32:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,14 @@ int		ft_ls(char *path, short flags)
 	t_direct		*d;
 	DIR				*s;
 	struct dirent	*ent;
+	char			*npath;
 
 	d = NULL;
-	s = opendir(path);
+	npath = fix_input(path);
+	if (!(s = opendir(npath)) && errno)
+		return (errorprint(path, errno));
 	while (!d && s && (ent = readdir(s)))
-		d = new_direct(ent->d_name, path, flags);
+		d = new_direct(ent->d_name, npath, flags);
 	if (d)
 	{
 		while (d && add_dir(&d, readdir(s)))
@@ -90,7 +93,8 @@ int		ft_ls(char *path, short flags)
 		del_dir(d);
 	}
 	free(path);
-	return (1);
+	free(npath);
+	return (errno);
 }
 
 int		main(int ac, char **av)
@@ -113,7 +117,7 @@ int		main(int ac, char **av)
 	{
 		if (size > 1 && ft_strcmp(path[i], "./"))
 			ft_printf("%s:\n", path[i]);
-		ft_ls(fix_input(path[i]), flags);
+		ft_ls(ft_strdup(path[i]), flags);
 		if (++i < size)
 			ft_putchar('\n');
 	}

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 23:43:42 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:15:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@
 # include "linux.h"
 # endif
 
-/*
-** NAME_MAX and PATH_MAX for your maximum buffers
-** bonus -u -d, colours
-** u = time of last access, d makes directories plain files
-*/
 /*
 **other notes:
 **			find out how to print extra @ and + and the like for /
@@ -90,6 +85,6 @@ int			is_type(struct stat stats, unsigned int type);
 
 int			test_input(char *input, short flags);
 int			flags_error(char e);
-void		errorprint(char *path, int errnum);
+int			errorprint(char *path, int errnum);
 
 #endif

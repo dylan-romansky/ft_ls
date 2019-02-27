@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 00:07:46 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 16:32:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,20 @@ void	get_blocks(t_direct *dir)
 
 void	print_char(t_direct *d, int i)
 {
-	struct stat	link;
-	char		*path;
-	char		lpath[PATH_MAX + 1];
 	int			t;
 
 	t = i;
-	path = NULL;
-	if (i == 5)
+	if (i == 3 && (d->flags & l || d->flags & g || d->flags & o))
 	{
-		path = ft_strjoin(d->path, d->name);
-		t = readlink(path, lpath, PATH_MAX);
-		free(path);
-		lpath[t] = '\0';
-		path = ft_strjoin(d->path, lpath);
-		stat(path, &link);
-		free(path);
-		t = 0;
-		while (t < 15 && !is_type(link, g_filetypes[t].type))
-			t++;
-		if (t == 4 && link.st_mode & S_IXUSR)
-			t = 13;
+		if (is_type(*d->stats, S_IFDIR))
+		{
+			t = 1;
+			print_link(d);
+		}
 	}
-	t == i ? ft_printf("%c", g_filetypes[i].c2) :
-		ft_printf("%c", g_filetypes[t].c2);
+	ft_printf("%c", g_filetypes[t].c2);
+	if (i == 3 && t != 1 && (d->flags & l || d->flags & g))
+		print_link(d);
 }
 
 void	print_name(t_direct *d, int i, int width)
@@ -68,10 +58,10 @@ void	print_name(t_direct *d, int i, int width)
 		ft_printf("{eoc}");
 	len = ft_strlen(d->name);
 	width = width > len ? width - len : 0;
-	if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
-		print_link(d);
 	if (d->flags & F)
 		print_char(d, i);
+	else if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
+		print_link(d);
 	while (width--)
 		ft_putchar(' ');
 }
@@ -83,14 +73,14 @@ void	print_type(t_direct *d, int width)
 	i = 0;
 	while (i < 15 && !is_type(*d->stats, g_filetypes[i].type))
 		i++;
-	if (i == 4 && d->stats->st_mode & S_IXUSR)
+	if (i == 5 && d->stats->st_mode & S_IXUSR)
 		i = 13;
 	if (d->flags & l || d->flags & g)
 	{
 		ft_printf("%c", g_filetypes[i].c);
 		print_info(d);
 	}
-	if (i == 2 && d->stats->st_mode & S_IWOTH)
+	if (i == 7 && d->stats->st_mode & S_IWOTH)
 		i = d->stats->st_mode & S_ISVTX ? 14 : 15;
 	print_name(d, i, width);
 }
