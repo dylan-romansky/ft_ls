@@ -102,4 +102,5 @@ void		print_col(t_direct *d)
 	}
 	column_count(start, len, count);
 	check_recursion(&recs);
+	del_rex(recs);
 }

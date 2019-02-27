@@ -105,4 +105,5 @@ void	print_list(t_direct *d)
 		d = d->next;
 	}
 	check_recursion(&recs);
+	del_rex(recs);
 }

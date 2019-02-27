@@ -43,8 +43,6 @@ void	check_recursion(t_rex **rec)
 		free(fpath);
 		curr = curr->next;
 	}
-	if (rec && *rec)
-		del_rex(*rec);
 }
 
 void	sorting(t_direct **d, short flags)
