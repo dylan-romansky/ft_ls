@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:41:57 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 17:32:07 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:50:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_recursion(t_rex **rec)
 		return ;
 	while (curr && curr->dir)
 	{
+		printf("%s\n", ft_strjoin(dir->path, dir->name));
 		dir = curr->dir;
 		fpath = ft_strjoin(dir->path, dir->name);
 		ft_printf("\n%s\n", fpath);
@@ -69,14 +70,15 @@ int		ft_ls(char *path, short flags)
 	t_direct		*d;
 	DIR				*s;
 	struct dirent	*ent;
-	char			*npath;
 
 	d = NULL;
-	npath = fix_input(path);
-	if (!(s = opendir(npath)) && errno)
-		return (errorprint(path, errno));
+	if (!(s = opendir(path)) && errno)
+	{
+		free(path);
+		return (errno);
+	}
 	while (!d && s && (ent = readdir(s)))
-		d = new_direct(ent->d_name, npath, flags);
+		d = new_direct(ent->d_name, path, flags);
 	if (d)
 	{
 		while (d && add_dir(&d, readdir(s)))
@@ -91,8 +93,7 @@ int		ft_ls(char *path, short flags)
 		del_dir(d);
 	}
 	free(path);
-	free(npath);
-	return (errno);
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -115,10 +116,12 @@ int		main(int ac, char **av)
 	{
 		if (size > 1 && ft_strcmp(path[i], "./"))
 			ft_printf("%s:\n", path[i]);
-		ft_ls(ft_strdup(path[i]), flags);
+		if (ft_ls(fix_input(path[i]), flags))
+			errorprint(path[i], errno);
 		if (++i < size)
 			ft_putchar('\n');
 	}
 	del_path(path);
+	while (1);
 	return (errno);
 }
