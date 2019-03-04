@@ -70,9 +70,9 @@ void		column_count(t_direct *d, int len, int count)
 
 int			len_check_lmao(int len, int cmp)
 {
-	len = cmp >= 8 ? 16 : len;
-	len = cmp >= 16 ? 32 : len;
-	len = cmp >= len ? cmp + 8 : len;
+	len = len < cmp && cmp >= 8 ? 16 : len;
+	len = len < cmp && cmp >= 16 ? 32 : len;
+	len = len < cmp && cmp >= len ? cmp + 8 : len;
 	return (len);
 }
 
