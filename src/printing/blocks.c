@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 18:31:15 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/03/05 14:29:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	print_name(t_direct *d, int i, int width)
 	width = width > len ? width - len : 0;
 	i = (i == 14 || i == 15) ? 1 : i;
 	if (d->flags & F)
+	{
 		print_char(d, i);
+		width = g_filetypes[i].c2 ? width - 1 : width;
+	}
 	else if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
 	while (width--)
