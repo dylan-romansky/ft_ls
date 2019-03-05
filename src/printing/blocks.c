@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/03/05 14:29:17 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/03/05 14:59:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_blocks(t_direct *dir)
 	ft_printf("total %d\n", blocks);
 }
 
-void	print_char(t_direct *d, int i)
+int		print_char(t_direct *d, int i, int width)
 {
 	int			t;
 
@@ -42,9 +42,14 @@ void	print_char(t_direct *d, int i)
 			print_link(d);
 		}
 	}
+	else if (i == 8 || i == 9)
+		t = 13;
 	ft_printf("%c", g_filetypes[t].c2);
+	if (g_filetypes[t].c2)
+		width--;
 	if (i == 3 && t != 1 && (d->flags & l || d->flags & g))
 		print_link(d);
+	return (width);
 }
 
 void	print_name(t_direct *d, int i, int width)
@@ -60,10 +65,7 @@ void	print_name(t_direct *d, int i, int width)
 	width = width > len ? width - len : 0;
 	i = (i == 14 || i == 15) ? 1 : i;
 	if (d->flags & F)
-	{
-		print_char(d, i);
-		width = g_filetypes[i].c2 ? width - 1 : width;
-	}
+		width = print_char(d, i, width);
 	else if (((d->flags & l) || (d->flags & g)) && g_filetypes[i].c == 'l')
 		print_link(d);
 	while (width--)

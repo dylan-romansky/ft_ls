@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 19:51:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/03/05 14:59:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		print_info(t_direct *dir);
 void		print_one(char *file, short flags);
 void		print_maj_min(t_direct *dir);
 void		print_col(t_direct *dir);
-void		print_char(t_direct *d, int i);
+int			print_char(t_direct *d, int i, int width);
 void		get_blocks(t_direct *dir);
 int			is_sorted(char *s1, char *s2);
 void		sort_dir(t_direct **list);
