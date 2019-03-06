@@ -66,7 +66,7 @@ void	sorting(t_direct **d, short flags)
 	{
 		if (flags & t)
 			t_sort(d);
-		if (flags & u)
+		else if (flags & u)
 			u_sort(d);
 		else
 			sort_dir(d);

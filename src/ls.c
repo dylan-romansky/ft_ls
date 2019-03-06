@@ -70,7 +70,6 @@ int			ft_ls(char *path, short flags)
 
 	if (!(s = opendir(path)) && errno)
 	{
-		errorprint(path, errno);
 		free(path);
 		return (errno);
 	}
