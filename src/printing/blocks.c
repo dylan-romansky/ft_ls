@@ -25,7 +25,8 @@ void	get_blocks(t_direct *dir)
 	{
 		while (dir->next && !(dir->flags & a) && *(dir->name) == '.')
 			dir = dir->next;
-		blocks += dir->stats->st_size;
+		blocks += dir->flags & h ? dir->stats->st_size :
+			dir->stats->st_blocks;
 		dir = dir->next;
 	}
 	ft_printf("total %s\n", size_str(blocks, flags));
