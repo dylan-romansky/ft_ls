@@ -13,13 +13,11 @@
 #include "ls.h"
 #include "lsenums.h"
 
-char	*suffix_join(char *size, int unit)
+char	*suffix_join(char *size, char *units, int unit)
 {
-	char	*units;
 	char	*tmp;
 	char	*res;
 
-	units = "BKMGTP";
 	tmp = ft_strndup(units + unit, 1);
 	res = ft_strjoin(size, tmp);
 	free(size);
@@ -31,12 +29,14 @@ char	*size_str(long size, short flags)
 {
 	double	perc;
 	int		unit;
+	char	*units;
 
 	unit = 0;
+	units = "BKMGTP";
 	if (!(flags & h))
 		return(ft_ltoa(size));
 	perc = (double)size;
-	while (size > 1024)
+	while (units[unit] && size > 1024)
 	{
 		unit++;
 		size /= 1024;
