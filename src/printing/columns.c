@@ -13,10 +13,6 @@
 #include "ls.h"
 #include "lsenums.h"
 
-/*
-** not perfect but Imma do either 30 width or longest name plus 2
-*/
-
 void		print_every_i(t_direct *d, int i, int len)
 {
 	t_direct		*curr;
