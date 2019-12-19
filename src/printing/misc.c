@@ -18,7 +18,7 @@ char	*suffix_join(char *size, char *units, int unit)
 	char	*tmp;
 	char	*res;
 
-	tmp = ft_strndup(units + unit, 1);
+	tmp = ft_strndup(units + unit, unit ? 1 : 0);
 	res = ft_strjoin(size, tmp);
 	free(size);
 	free(tmp);
