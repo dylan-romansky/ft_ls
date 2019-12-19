@@ -1,2 +1,2 @@
-Still in development. It currently supports "-AFGHRadfglortu1" flags and column formatting (though that's not perfect). I have headers included that allow this to function on a linux environment if that's where you're working and trynna test this. Still far from optimized but that will come in time.
+Still in development. It currently supports "-AFGHRadfghlortu1" flags and column formatting (though that's not perfect). I have headers included that allow this to function on a linux environment if that's where you're working and trynna test this. Still far from optimized but that will come in time.
 EDIT: I'm basically done with this project, it will live in its current state unless for some reason it is deemed necessary to give this an update
