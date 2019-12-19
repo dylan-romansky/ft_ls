@@ -42,7 +42,7 @@ char	*size_str(long size, short flags)
 		size /= 1024;
 		perc /= (double)1024;
 	}
-	return(suffix_join(ft_ftoa(perc, 1), unit));
+	return(suffix_join(ft_ftoa(perc, 1), units, unit));
 }
 
 void	print_one(char *file, short flags)
