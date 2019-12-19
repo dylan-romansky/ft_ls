@@ -67,11 +67,7 @@ void		column_count(t_direct *d, int len, int count)
 int			len_check_lmao(int len, int cmp)
 {
 	if (len <= cmp)
-	{
-		len = cmp >= 8 ? 16 : len;
-		len = cmp >= 16 ? 32 : len;
-		len = cmp >= len ? cmp + 8 : len;
-	}
+		len = cmp + 2;
 	return (len);
 }
 
@@ -84,7 +80,7 @@ void		print_col(t_direct *d)
 
 	if (!d)
 		return ;
-	len = 8;
+	len = 0;
 	count = 0;
 	start = d;
 	recs = NULL;
