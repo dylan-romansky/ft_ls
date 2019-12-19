@@ -18,7 +18,7 @@ typedef enum e_lsflag	t_lsflag;
 enum	e_lsflag
 {
 	l = 2, R = 4, a = 8, r = 16, t = 32, g = 64, f = 128, G = 256, o = 512,
-	A = 1024, d = 2048, u = 4096, F = 8192, H = 16384
+	A = 1024, d = 2048, u = 4096, F = 8192, H = 16384, h = 32768
 };
 
 #endif

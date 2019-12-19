@@ -22,7 +22,7 @@ int		errorprint(char *path, int errnum)
 int		flags_error(char e)
 {
 	ft_dprintf(2, "ft_ls: illegal option --%c\n", e);
-	ft_dprintf(2, "usage: ft_ls [-AFGHRadfglortu1] [file ...]\n");
+	ft_dprintf(2, "usage: ft_ls [-AFGHRadfghlortu1] [file ...]\n");
 	return (-1);
 }
 

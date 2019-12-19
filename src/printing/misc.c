@@ -11,6 +11,39 @@
 /* ************************************************************************** */
 
 #include "ls.h"
+#include "lsenums.h"
+
+char	*suffix_join(char *size, int unit)
+{
+	char	*units;
+	char	*tmp;
+	char	*res;
+
+	units = "BKMGTP";
+	tmp = ft_strndup(units + unit, 1);
+	res = ft_strjoin(size, tmp);
+	free(size);
+	free(tmp);
+	return (res);
+}
+
+char	*size_str(long size, short flags)
+{
+	double	perc;
+	int		unit;
+
+	unit = 0;
+	if (!(flags & h))
+		return(ft_ltoa(size));
+	perc = (double)size;
+	while (size > 1024)
+	{
+		unit++;
+		size /= 1024;
+		perc /= (double)1024;
+	}
+	return(suffix_join(ft_ftoa(perc, 1), unit));
+}
 
 void	print_one(char *file, short flags)
 {

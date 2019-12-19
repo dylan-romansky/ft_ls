@@ -27,7 +27,7 @@ struct	s_direct
 	char		*path;
 	char		*user;
 	char		*group;
-	long		size;
+	char		*size;
 	int			size_pad;
 	int			link_pad;
 	int			userlen;

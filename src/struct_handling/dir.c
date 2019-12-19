@@ -54,7 +54,7 @@ void		d_fill(t_direct **dir)
 	new->group = handle_gid(stats->st_gid);
 	new->userlen = ft_strlen(new->user);
 	new->grouplen = ft_strlen(new->group);
-	new->size_pad = number_length(new->size);
+	new->size_pad = ft_strlen(new->size);
 	new->link_pad = number_length(stats->st_nlink);
 }
 
@@ -77,7 +77,7 @@ t_direct	*new_direct(char *name, char *path, short flags)
 	if (!(new = (t_direct *)malloc(sizeof(t_direct))))
 		return (NULL);
 	new->name = ft_strdup(name);
-	new->size = stats->st_size;
+	new->size = size_str(stats->st_size, flags);
 	new->stats = stats;
 	new->flags = flags;
 	new->path = path;

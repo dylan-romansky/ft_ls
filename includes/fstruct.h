@@ -31,7 +31,9 @@ t_ftypes g_ftypes[] =
 	{'d', d},
 	{'u', u},
 	{'F', F},
-	{'H', H}
+	{'H', H},
+	{'h', h},
+	{0, 0}
 };
 
 #endif

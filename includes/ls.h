@@ -48,6 +48,7 @@ t_direct	*new_direct(char *name, char *path, short flags);
 int			add_dir(t_direct **dir, struct dirent *ent);
 void		del_dir(t_direct *dir);
 int			num_len(long long n);
+char		*size_str(long size, short flags);
 void		fix_size_pad(t_direct **dir, int size);
 void		fix_userlen(t_direct **dir, int size);
 void		fix_grouplen(t_direct **dir, int size);

@@ -104,5 +104,5 @@ void	print_maj_min(t_direct *d)
 		ft_printf("  %3d, %3d", major(d->stats->st_rdev),
 				minor(d->stats->st_rdev));
 	else
-		ft_printf("  %8ld", d->size);
+		ft_printf("  %8s", d->size);
 }

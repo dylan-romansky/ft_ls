@@ -67,7 +67,7 @@ void	print_info(t_direct *d)
 	if (ft_strstr(d->path, "/dev"))
 		print_maj_min(d);
 	else
-		ft_printf("  %*ld", d->size_pad, d->size);
+		ft_printf("  %*s", d->size_pad, d->size);
 	print_time(d->stats);
 }
 
