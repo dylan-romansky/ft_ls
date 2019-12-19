@@ -18,6 +18,7 @@ void	get_blocks(t_direct *dir)
 {
 	long		blocks;
 	int			flags;
+	char		*total;
 
 	blocks = 0;
 	flags = dir->flags;
@@ -29,7 +30,10 @@ void	get_blocks(t_direct *dir)
 			dir->stats->st_blocks;
 		dir = dir->next;
 	}
-	ft_printf("total %s\n", size_str(blocks, flags));
+	blocks /= 2;
+	total = size_str(blocks, flags);
+	ft_printf("total %s\n", total);
+	free(total);
 }
 
 int		print_char(t_direct *d, int i, int width)

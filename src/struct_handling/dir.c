@@ -95,6 +95,7 @@ void		del_dir(t_direct *dir)
 	free(dir->stats);
 	free(dir->group);
 	free(dir->user);
+	free(dir->size);
 	if (del->next)
 		del_dir(del->next);
 	free(del);
