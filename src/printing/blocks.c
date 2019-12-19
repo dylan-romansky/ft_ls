@@ -30,7 +30,8 @@ void	get_blocks(t_direct *dir)
 			dir->stats->st_blocks;
 		dir = dir->next;
 	}
-	blocks /= 2;
+	if (!(flags & h))
+		blocks /= 2;
 	total = size_str(blocks, flags);
 	ft_printf("total %s\n", total);
 	free(total);
