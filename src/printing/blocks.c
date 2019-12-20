@@ -31,7 +31,7 @@ void	get_blocks(t_direct *dir)
 		dir = dir->next;
 	}
 	if (!(flags & h))
-		blocks = BLOCK == 2 ? (blocks / BLOCK) + (blocks | 1) : blocks / BLOCK;
+		blocks = BLOCK == 2 ? (blocks / BLOCK) + (blocks & 1) : blocks / BLOCK;
 	total = size_str(blocks, flags);
 	ft_printf("total %s\n", total);
 	free(total);
