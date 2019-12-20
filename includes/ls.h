@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:43:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/12/19 17:23:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 18:31:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@
 # include <glob.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
-# define BLOCK 1
 # ifdef __linux__
 #  include <sys/sysmacros.h>
 #  define S_IFWHT 0160000
 #  define BLOCK 2
+# else
+#  define BLOCK 1
 # endif
 
 /*
