@@ -6,14 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/12/19 18:35:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 18:47:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
 
-#ifdef __linux
+#ifdef __linux__
 
 int		t_is_sorted(t_direct *d1, t_direct *d2)
 {
