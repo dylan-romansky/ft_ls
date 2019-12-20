@@ -6,24 +6,35 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 00:09:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 18:35:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
 
-int		is_sorted(char *s1, char *s2)
+#ifdef __linux
+
+int		t_is_sorted(t_direct *d1, t_direct *d2)
 {
-	while (*s1 && *s1 == *s2)
+	struct stat	s1;
+	struct stat	s2;
+
+	s1 = *d1->stats;
+	s2 = *d2->stats;
+	if (s1.st_mtim.tv_sec < s2.st_mtim.tv_sec)
+		return (t);
+	else if (s1.st_mtim.tv_sec == s2.st_mtim.tv_sec)
 	{
-		s1++;
-		s2++;
+		if (s1.st_mtim.tv_nsec < s2.st_mtim.tv_nsec)
+			return (t);
+		else if (s1.st_mtim.tv_nsec == s2.st_mtim.tv_nsec)
+			return (is_sorted(d1->name, d2->name) ? t : 0);
 	}
-	if (*s1 <= *s2)
-		return (r);
 	return (0);
 }
+
+#else
 
 int		t_is_sorted(t_direct *d1, t_direct *d2)
 {
@@ -43,6 +54,8 @@ int		t_is_sorted(t_direct *d1, t_direct *d2)
 	}
 	return (0);
 }
+
+#endif
 
 void	f_sort(t_direct **list)
 {
