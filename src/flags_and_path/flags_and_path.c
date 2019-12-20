@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:10:24 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/21 23:49:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:31:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			get_flag(char *s)
 		{
 			if (*s == '1')
 				f = get_one(f);
-			while (g_ftypes[i].type &&  g_ftypes[i].type != *s)
+			while (g_ftypes[i].type && g_ftypes[i].type != *s)
 				i++;
 			if (g_ftypes[i].type)
 				f |= g_ftypes[i].flag;

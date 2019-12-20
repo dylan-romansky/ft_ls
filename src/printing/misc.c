@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:59:06 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/25 23:59:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:30:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*size_str(long size, short flags)
 	unit = 0;
 	units = "BKMGTP";
 	if (!(flags & h))
-		return(ft_ltoa(size));
+		return (ft_ltoa(size));
 	perc = (double)size;
 	while (units[unit] && size > 1024)
 	{
@@ -42,7 +42,31 @@ char	*size_str(long size, short flags)
 		size /= 1024;
 		perc /= (double)1024;
 	}
-	return(suffix_join(ft_ftoa(perc, 1), units, unit));
+	return (suffix_join(ft_ftoa(perc, 1), units, unit));
+}
+
+void	print_list(t_direct *d)
+{
+	t_rex	*recs;
+
+	recs = NULL;
+	if (!d)
+		return ;
+	if (d->flags & l || d->flags & g)
+		get_blocks(d);
+	if (d->flags & R)
+		recs = new_rex(NULL);
+	while (d)
+	{
+		print_type(d, 1);
+		ft_putchar('\n');
+		if (d->flags & R && !ft_strequ(d->name, ".") &&
+				!ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
+			add_rex(d, &recs);
+		d = d->next;
+	}
+	check_recursion(&recs);
+	del_rex(recs);
 }
 
 void	print_one(char *file, short flags)

@@ -6,12 +6,25 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:52:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 17:51:42 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:30:37 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
+
+#ifdef __linux__
+
+void	print_time(struct stat *info)
+{
+	char			*time;
+
+	time = ft_strsub(ctime(&(info->st_mtim.tv_sec)), 4, 12);
+	ft_printf(" %s ", time);
+	free(time);
+}
+
+#else
 
 void	print_time(struct stat *info)
 {
@@ -21,6 +34,8 @@ void	print_time(struct stat *info)
 	ft_printf(" %s ", time);
 	free(time);
 }
+
+#endif
 
 void	print_perm(struct stat *info, int b)
 {
@@ -82,28 +97,4 @@ void	print_link(t_direct *d)
 	link[ret] = '\0';
 	ft_printf(" -> %s", link);
 	free(path);
-}
-
-void	print_list(t_direct *d)
-{
-	t_rex	*recs;
-
-	recs = NULL;
-	if (!d)
-		return ;
-	if (d->flags & l || d->flags & g)
-		get_blocks(d);
-	if (d->flags & R)
-		recs = new_rex(NULL);
-	while (d)
-	{
-		print_type(d, 1);
-		ft_putchar('\n');
-		if (d->flags & R && !ft_strequ(d->name, ".") &&
-				!ft_strequ(d->name, "..") && is_type(*d->stats, S_IFDIR))
-			add_rex(d, &recs);
-		d = d->next;
-	}
-	check_recursion(&recs);
-	del_rex(recs);
 }

@@ -6,12 +6,35 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 21:41:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/26 19:49:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:30:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include "lsenums.h"
+
+#ifdef __linux__
+
+int		u_is_sorted(t_direct *d1, t_direct *d2)
+{
+	struct stat	s1;
+	struct stat	s2;
+
+	s1 = *d1->stats;
+	s2 = *d2->stats;
+	if (s1.st_atim.tv_sec < s2.st_atim.tv_sec)
+		return (u);
+	else if (s1.st_atim.tv_sec == s2.st_atim.tv_sec)
+	{
+		if (s1.st_atim.tv_nsec < s2.st_atim.tv_nsec)
+			return (u);
+		else if (s1.st_atim.tv_nsec == s2.st_atim.tv_nsec)
+			return (is_sorted(d1->name, d2->name) ? u : 0);
+	}
+	return (0);
+}
+
+#else
 
 int		u_is_sorted(t_direct *d1, t_direct *d2)
 {
@@ -31,6 +54,8 @@ int		u_is_sorted(t_direct *d1, t_direct *d2)
 	}
 	return (0);
 }
+
+#endif
 
 void	u_sort(t_direct **list)
 {
