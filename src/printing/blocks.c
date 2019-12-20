@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:43:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/03/05 14:59:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:08:18 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	get_blocks(t_direct *dir)
 		dir = dir->next;
 	}
 	if (!(flags & h))
-		blocks /= 2;
+		blocks /= BLOCK;
 	total = size_str(blocks, flags);
 	ft_printf("total %s\n", total);
 	free(total);
